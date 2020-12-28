@@ -2,7 +2,7 @@
 
 namespace Solver.Engine.Rules
 {
-    public interface IRule
+    public interface IComplexRule
     {
         int[] Check(List<uint> numbers, int[] fields);
     }

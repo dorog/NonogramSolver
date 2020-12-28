@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Solver.Engine.Rules.Implementations;
+using Solver.Engine.Rules.Complex.Impl;
 using System.Collections.Generic;
 
 namespace Solver.Test

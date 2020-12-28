@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Solver.Engine.Rules.Implementations
+namespace Solver.Engine.Rules.Complex.Impl
 {
-    public class SummRule : IRule
+    public class SummRule : IComplexRule
     {
         public int[] Check(List<uint> numbers, int[] fields)
         {
