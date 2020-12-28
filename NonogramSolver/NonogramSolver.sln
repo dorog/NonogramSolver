@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solver", "Solver\Solver.csproj", "{5D075322-D9A5-474B-A091-C9FAC90CC12B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solver.Engine", "Solver\Solver.Engine.csproj", "{5D075322-D9A5-474B-A091-C9FAC90CC12B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solver.Test", "Solver.Test\Solver.Test.csproj", "{61735A79-8D26-421F-ACAD-30516BF99B77}"
 EndProject
