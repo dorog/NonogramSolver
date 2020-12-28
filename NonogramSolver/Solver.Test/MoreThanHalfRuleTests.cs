@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Solver.Engine.Rules.HalfOrMore;
+using Solver.Engine.Rules.Implementations;
 using System.Collections.Generic;
 
 namespace Solver.Test
@@ -7,7 +7,7 @@ namespace Solver.Test
     [TestClass]
     public class MoreThanHalfRuleTests
     {
-        private readonly MoreThanHalf halfOrMore = new MoreThanHalf();
+        private readonly MoreThanHalfRule halfOrMore = new MoreThanHalfRule();
 
         [TestMethod]
         public void FullTest()

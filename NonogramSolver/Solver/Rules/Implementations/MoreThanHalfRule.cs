@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Solver.Engine.Rules.HalfOrMore
+namespace Solver.Engine.Rules.Implementations
 {
-    public class MoreThanHalf : IRule
+    public class MoreThanHalfRule : IRule
     {
         public int[] Check(List<uint> numbers, int[] fields)
         {
