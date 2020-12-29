@@ -40,7 +40,7 @@ namespace Solver.Engine.Rules.Simple.Impl
 
             for(int i = 0; i < fields.Length; i++)
             {
-                if(Math.Abs(i - min) >= maxDistance && Math.Abs(i - max) >= maxDistance)
+                if(Math.Abs(i - min) >= maxDistance && Math.Abs(i - max) >= maxDistance && (i < min || max < i))
                 {
                     fields[i] = -1;
                 }

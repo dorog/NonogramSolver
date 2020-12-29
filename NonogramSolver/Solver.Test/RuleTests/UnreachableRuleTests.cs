@@ -21,6 +21,18 @@ namespace Solver.Test.RuleTests
         }
 
         [TestMethod]
+        public void NoChangesFullTest()
+        {
+            uint number = 5;
+            int[] fields = new int[] { 1, 1, 1, 1, 1 };
+            int[] expected = new int[] { 1, 1, 1, 1, 1 };
+
+            var results = unreachableRule.Check(number, fields);
+
+            CollectionAssert.AreEqual(expected, results);
+        }
+
+        [TestMethod]
         public void NoUnreachableEndTest()
         {
             uint number = 5;
