@@ -1,18 +1,22 @@
 ﻿using Solver.Data;
+using Solver.Engine.Data;
 using Solver.Engine.Rules;
 using Solver.Engine.Rules.Complex.Impl;
 using Solver.Engine.Rules.Simple;
 using Solver.Engine.Rules.Simple.Impl;
+using Solver.Engine.Separators;
+using Solver.Engine.Separators.Impl;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Solver.Engine
 {
     public static class SolverEngine
     {
-        private static readonly List<IComplexRule> complexRules = new List<IComplexRule>()
+        /*private static readonly List<IComplexRule> complexRules = new List<IComplexRule>()
         {
             new DoneRule()
-        };
+        };*/
 
         private static readonly List<ISimpleRule> simpleRules = new List<ISimpleRule>()
         {
@@ -21,24 +25,201 @@ namespace Solver.Engine
             new UnreachableRule(),
         };
 
+        private static readonly List<ISeparator> separators = new List<ISeparator>()
+        {
+            new TwoNumberDistanceSeparator(),
+            new WallSeparator()
+        };
+
+        private static readonly List<NumberListRange> numberListRanges = new List<NumberListRange>();
+        private static readonly List<NumberedRange> notDoneRanges = new List<NumberedRange>();
+
         public static Puzzle Solve(Puzzle puzzle)
         {
+            numberListRanges.Clear();
+            notDoneRanges.Clear();
+
             if (FinishedPuzzle(puzzle))
             {
                 return puzzle;
             }
 
+            CreateNumberListRanges(puzzle);
+
             ApplyComplexRuleOnThePuzzle(puzzle, new SummRule());
 
             while (!FinishedPuzzle(puzzle))
             {
-                foreach(var complexRule in complexRules)
-                {
-                    ApplyComplexRuleOnThePuzzle(puzzle, complexRule);
-                }
+                //ApplyComplexRules(puzzle);
+
+                ApplySimpleRules(puzzle);
+
+                RefreshNumberedRanges(puzzle);
+
+                RefreshNumberListRanges(puzzle);
+
+                CalculateNumberedRanges();
             }
 
             return puzzle;
+        }
+
+        private static void CreateNumberListRanges(Puzzle puzzle)
+        {
+            for (int i = 0; i < puzzle.Matrix.GetLength(0); i++)
+            {
+                numberListRanges.Add(new NumberListRange()
+                {
+                    RangeType = RangeType.Row,
+                    Index = i,
+                    Delay = 0,
+                    Fields = puzzle.GetMatrixRow(i),
+                    Numbers = puzzle.Rows[i]
+                });
+            }
+
+            for (int i = 0; i < puzzle.Matrix.GetLength(1); i++)
+            {
+                numberListRanges.Add(new NumberListRange()
+                {
+                    RangeType = RangeType.Column,
+                    Index = i,
+                    Delay = 0,
+                    Fields = puzzle.GetMatrixColumn(i),
+                    Numbers = puzzle.Columns[i]
+                });
+            }
+        }
+
+        /*private static void ApplyComplexRules(Puzzle puzzle)
+        {
+            foreach (var complexRule in complexRules)
+            {
+                ApplyComplexRuleOnThePuzzle(puzzle, complexRule);
+            }
+        }*/
+
+        private static void ApplySimpleRules(Puzzle puzzle)
+        {
+            foreach (var notDoneRange in notDoneRanges)
+            {
+                foreach (var simpleRule in simpleRules)
+                {
+                    notDoneRange.Fields = simpleRule.Check(notDoneRange.Number, notDoneRange.Fields);
+                }
+
+                if (notDoneRange.RangeType == RangeType.Column)
+                {
+                    puzzle.SetMatrixColumn(notDoneRange.Index, notDoneRange.Fields, notDoneRange.Delay);
+                }
+                else
+                {
+                    puzzle.SetMatrixRow(notDoneRange.Index, notDoneRange.Fields, notDoneRange.Delay);
+                }
+            }
+
+            notDoneRanges.RemoveAll(x => x.IsDone());
+        }
+
+        private static void RefreshNumberedRanges(Puzzle puzzle)
+        {
+            foreach(var numberedRange in notDoneRanges)
+            {
+                int[] fields = numberedRange.RangeType == RangeType.Column ? puzzle.GetMatrixColumn(numberedRange.Index) : puzzle.GetMatrixRow(numberedRange.Index);
+
+                for(int i = 0; i < numberedRange.Fields.Length; i++)
+                {
+                    numberedRange.Fields[i] = fields[numberedRange.Delay + i];
+                }
+            }
+        }
+
+        private static void RefreshNumberListRanges(Puzzle puzzle)
+        {
+            foreach (var numberListRange in numberListRanges)
+            {
+                int[] fields = numberListRange.RangeType == RangeType.Column ? puzzle.GetMatrixColumn(numberListRange.Index) : puzzle.GetMatrixRow(numberListRange.Index);
+
+                for (int i = 0; i < numberListRange.Fields.Length; i++)
+                {
+                    numberListRange.Fields[i] = fields[numberListRange.Delay + i];
+                }
+            }
+        }
+
+        private static void CalculateNumberedRanges()
+        {
+            foreach(var numberListRange in numberListRanges)
+            {
+                foreach(var separator in separators)
+                {
+                    Range[] ranges = separator.Separate(numberListRange.Numbers, numberListRange.Fields);
+
+                    List<uint> numbersInGroup = new List<uint>();
+                    int delay = 0;
+                    for(int i = 0; i < ranges.Length; i++)
+                    {
+                        if(ranges[i] == null)
+                        {
+                            numbersInGroup.Add(numberListRange.Numbers[i]);
+                        }
+                        else
+                        {
+                            if(numbersInGroup.Count > 0)
+                            {
+                                numberListRanges.Add(new NumberListRange()
+                                {
+                                    RangeType = numberListRange.RangeType,
+                                    Index = numberListRange.Index,
+                                    Delay = delay,
+                                    Fields = GetNumberedRangeFields(numberListRange, new Range() { Start = (uint)delay, End = ranges[i].Start - 1 }),
+                                    Numbers = numbersInGroup
+                                });
+                            }
+
+                            notDoneRanges.Add(new NumberedRange()
+                            {
+                                RangeType = numberListRange.RangeType,
+                                Index = numberListRange.Index,
+                                Delay = (int)(numberListRange.Delay + ranges[i].Start),
+                                Fields = GetNumberedRangeFields(numberListRange, ranges[i]),
+                                Number = numberListRange.Numbers[i]
+                            });
+
+                            delay += (int)ranges[i].End + 1;
+                        }
+                    }
+
+                    if (numbersInGroup.Count > 0)
+                    {
+                        numberListRanges.Add(new NumberListRange()
+                        {
+                            RangeType = numberListRange.RangeType,
+                            Index = numberListRange.Index,
+                            Delay = delay,
+                            Fields = GetNumberedRangeFields(numberListRange, new Range() { Start = (uint)delay, End = (uint)(numberListRange.Fields.Length - 1) }),
+                            Numbers = numbersInGroup
+                        });
+                    }
+
+                    if(ranges.Any(x => x != null))
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        private static int[] GetNumberedRangeFields(NumberListRange numberListRange, Range range)
+        {
+            int[] fields = new int[range.End - range.Start + 1];
+
+            for(int i = 0; i < fields.Length; i++)
+            {
+                fields[i] = numberListRange.Fields[range.Start + i];
+            }
+
+            return fields;
         }
 
         private static bool FinishedPuzzle(Puzzle puzzle)
