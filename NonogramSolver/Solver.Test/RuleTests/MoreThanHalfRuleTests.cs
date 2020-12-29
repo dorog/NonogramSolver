@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solver.Engine.Rules.Simple.Impl;
 
-namespace Solver.Test
+namespace Solver.Test.RuleTests
 {
     [TestClass]
     public class MoreThanHalfRuleTests
