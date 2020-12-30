@@ -5,8 +5,8 @@ namespace Solver.Engine.Data
     public class Range
     {
         public bool Done { get; set; } = false;
-        public uint Start { get; set; }
-        public uint End { get; set; }
+        public int Start { get; set; }
+        public int End { get; set; }
 
         public override bool Equals(object obj)
         {

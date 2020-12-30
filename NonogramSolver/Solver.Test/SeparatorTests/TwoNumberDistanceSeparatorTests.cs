@@ -13,7 +13,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void OneNumberRangeTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 1, 1, 1, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -28,7 +28,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void MoreThanTwoNumberRangeTest()
         {
-            List<uint> numbers = new List<uint> { 1, 1, 1 };
+            List<int> numbers = new List<int> { 1, 1, 1 };
             int[] fields = new int[] { 0, 1, 0, 1, 0, 1 };
             Range[] expected = new Range[]
             {
@@ -45,7 +45,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoNumberTwoSolidButTooCloseRangeTest()
         {
-            List<uint> numbers = new List<uint> { 1, 2 };
+            List<int> numbers = new List<int> { 1, 2 };
             int[] fields = new int[] { 0, 1, 0, 1, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -61,7 +61,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoNumberMoreSolidButTooCloseRangeTest()
         {
-            List<uint> numbers = new List<uint> { 1, 3 };
+            List<int> numbers = new List<int> { 1, 3 };
             int[] fields = new int[] { 0, 1, 0, 1, 0, 1 };
             Range[] expected = new Range[]
             {
@@ -77,7 +77,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoNumberTwoSolidAndEnoughSpaceRangeTest()
         {
-            List<uint> numbers = new List<uint> { 1, 1 };
+            List<int> numbers = new List<int> { 1, 1 };
             int[] fields = new int[] { 0, 1, 0, 0, 1, 0 };
             Range[] expected = new Range[]
             {
@@ -93,7 +93,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoNumberMoreSolidAndEnoughSpaceRangeTest()
         {
-            List<uint> numbers = new List<uint> { 1, 3 };
+            List<int> numbers = new List<int> { 1, 3 };
             int[] fields = new int[] { 0, 1, 0, 0, 0, 1, 0, 1 };
             Range[] expected = new Range[]
             {

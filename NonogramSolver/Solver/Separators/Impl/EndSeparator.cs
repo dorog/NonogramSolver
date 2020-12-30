@@ -5,7 +5,7 @@ namespace Solver.Engine.Separators.Impl
 {
     public class EndSeparator : ISeparator
     {
-        public Range[] Separate(List<uint> numbers, int[] fields)
+        public Range[] Separate(List<int> numbers, int[] fields)
         {
             Range[] ranges = new Range[numbers.Count];
 
@@ -33,8 +33,8 @@ namespace Solver.Engine.Separators.Impl
                 {
                     ranges[^1] = new Range()
                     {
-                        Start = (uint)(lastWhiteLocation + 1),
-                        End = (uint)fields.Length - 1
+                        Start = (int)(lastWhiteLocation + 1),
+                        End = (int)fields.Length - 1
                     };
                 }
             }
@@ -47,7 +47,7 @@ namespace Solver.Engine.Separators.Impl
                     ranges[0] = new Range()
                     {
                         Start = 0,
-                        End = (uint)firstWhiteLocation - 1
+                        End = (int)firstWhiteLocation - 1
                     };
                 }
             }

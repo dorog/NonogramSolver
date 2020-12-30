@@ -12,7 +12,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NoTooSmallSpaceWithOneNumberTest()
         {
-            List<uint> numbers = new List<uint> { 2 };
+            List<int> numbers = new List<int> { 2 };
             int[] fields = new int[] { 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0 };
             int[] expected = new int[] { 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0 };
 
@@ -24,7 +24,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NoTooSmallSpaceWithMoreNumberTest()
         {
-            List<uint> numbers = new List<uint> { 3, 2, 5 };
+            List<int> numbers = new List<int> { 3, 2, 5 };
             int[] fields = new int[] { 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0 };
             int[] expected = new int[] { 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0 };
 
@@ -36,7 +36,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void TooSmallSpaceWithOneNumberStartTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0 };
             int[] expected = new int[] { -1, -1, -1, 0, 0, 0, -1, 0, 0, 0, 0 };
 
@@ -48,7 +48,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void TooSmallSpaceWithOneNumberMiddleTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 0,  0, -1, 0, 0, -1, 0, 0, 0, 0 };
             int[] expected = new int[] { 0, 0, 0, -1, -1, -1, -1, 0, 0, 0, 0 };
 
@@ -60,7 +60,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void TooSmallSpaceWithOneNumberEndTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 0, 0, -1, 0, 0, 0, 0 -1, 0, 0 };
             int[] expected = new int[] { 0, 0, 0, -1, 0, 0, 0, 0 - 1, -1, -1 };
 
@@ -72,7 +72,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void TooSmallSpaceWithMoreNumberStartTest()
         {
-            List<uint> numbers = new List<uint> { 7, 6, 5, 4, 3 };
+            List<int> numbers = new List<int> { 7, 6, 5, 4, 3 };
             int[] fields = new int[] { 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0 };
             int[] expected = new int[] { -1, -1, -1, 0, 0, 0, -1, 0, 0, 0, 0 };
 
@@ -84,7 +84,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void TooSmallSpaceWithMoreNumberMiddleTest()
         {
-            List<uint> numbers = new List<uint> { 3, 4, 5, 6 };
+            List<int> numbers = new List<int> { 3, 4, 5, 6 };
             int[] fields = new int[] { 0, 0, 0, -1, 0, 0, -1, 0, 0, 0, 0 };
             int[] expected = new int[] { 0, 0, 0, -1, -1, -1, -1, 0, 0, 0, 0 };
 
@@ -96,7 +96,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void TooSmallSpaceWithMoreNumberEndTest()
         {
-            List<uint> numbers = new List<uint> { 5, 4, 3 };
+            List<int> numbers = new List<int> { 5, 4, 3 };
             int[] fields = new int[] { 0, 0, 0, -1, 0, 0, 0, 0 - 1, 0, 0 };
             int[] expected = new int[] { 0, 0, 0, -1, 0, 0, 0, 0 - 1, -1, -1 };
 

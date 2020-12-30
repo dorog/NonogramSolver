@@ -4,6 +4,6 @@ namespace Solver.Engine.Rules
 {
     public interface IComplexRule
     {
-        int[] Check(List<uint> numbers, int[] fields);
+        int[] Check(List<int> numbers, int[] fields);
     }
 }

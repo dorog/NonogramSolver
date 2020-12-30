@@ -12,7 +12,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NothingTest()
         {
-            uint number = 5;
+            int number = 5;
             int[] fields = new int[5];
             int[] expected = new int[5];
 
@@ -24,7 +24,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void FullTest()
         {
-            uint number = 5;
+            int number = 5;
             int[] fields = new int[] { 1, 0, 0, 0, 1 };
             int[] expected = new int[] { 1, 1, 1, 1, 1 };
 
@@ -36,7 +36,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void ExactMiddleTest()
         {
-            uint number = 3;
+            int number = 3;
             int[] fields = new int[] { 0, 1, 0, 1, 0 };
             int[] expected = new int[] { 0, 1, 1, 1, 0 };
 
@@ -48,7 +48,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void ExactEndTest()
         {
-            uint number = 3;
+            int number = 3;
             int[] fields = new int[] { 0, 0, 1, 0, 1 };
             int[] expected = new int[] { 0, 0, 1, 1, 1 };
 
@@ -60,7 +60,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void ExactStartTest()
         {
-            uint number = 3;
+            int number = 3;
             int[] fields = new int[] { 1, 0, 1, 0, 0 };
             int[] expected = new int[] { 1, 1, 1, 0, 0 };
 
@@ -72,7 +72,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void LessMiddleTest()
         {
-            uint number = 4;
+            int number = 4;
             int[] fields = new int[] { 0, 1, 0, 1, 0 };
             int[] expected = new int[] { 0, 1, 1, 1, 0 };
 
@@ -84,7 +84,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void LessEndTest()
         {
-            uint number = 4;
+            int number = 4;
             int[] fields = new int[] { 0, 0, 1, 0, 1 };
             int[] expected = new int[] { 0, 0, 1, 1, 1 };
 
@@ -96,7 +96,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void LessStartTest()
         {
-            uint number = 4;
+            int number = 4;
             int[] fields = new int[] { 1, 0, 1, 0, 0 };
             int[] expected = new int[] { 1, 1, 1, 0, 0 };
 

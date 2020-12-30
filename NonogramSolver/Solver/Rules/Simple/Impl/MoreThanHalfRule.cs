@@ -3,7 +3,7 @@ namespace Solver.Engine.Rules.Simple.Impl
 {
     public class MoreThanHalfRule : ISimpleRule
     {
-        public int[] Check(uint number, int[] fields)
+        public int[] Check(int number, int[] fields)
         {
             if (number > fields.Length / 2)
             {

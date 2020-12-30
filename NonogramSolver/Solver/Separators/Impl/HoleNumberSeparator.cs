@@ -5,7 +5,7 @@ namespace Solver.Engine.Separators.Impl
 {
     public class HoleNumberSeparator : ISeparator
     {
-        public Range[] Separate(List<uint> numbers, int[] fields)
+        public Range[] Separate(List<int> numbers, int[] fields)
         {
             List<Range> holes = GetHoles(fields);
 
@@ -13,7 +13,7 @@ namespace Solver.Engine.Separators.Impl
             {
                 for(int i = 0; i < holes.Count; i++)
                 {
-                    uint place = holes[i].End - holes[i].Start + 1;
+                    int place = holes[i].End - holes[i].Start + 1;
                     if(place < numbers[i])
                     {
                         return new Range[numbers.Count];
@@ -45,7 +45,7 @@ namespace Solver.Engine.Separators.Impl
                 {
                     if(minRange != null)
                     {
-                        holes.Add(new Range() { Start = (uint)minRange.GetValueOrDefault(), End = (uint)(i - 1) });
+                        holes.Add(new Range() { Start = (int)minRange.GetValueOrDefault(), End = (int)(i - 1) });
                         minRange = null;
                     }
                 }
@@ -53,7 +53,7 @@ namespace Solver.Engine.Separators.Impl
 
             if(minRange != null)
             {
-                holes.Add(new Range() { Start = (uint)minRange.GetValueOrDefault(), End = (uint)(fields.Length - 1) });
+                holes.Add(new Range() { Start = (int)minRange.GetValueOrDefault(), End = (int)(fields.Length - 1) });
             }
 
             return holes;

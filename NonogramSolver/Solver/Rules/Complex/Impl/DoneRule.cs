@@ -4,11 +4,11 @@ namespace Solver.Engine.Rules.Complex.Impl
 {
     public class DoneRule : IComplexRule
     {
-        public int[] Check(List<uint> numbers, int[] fields)
+        public int[] Check(List<int> numbers, int[] fields)
         {
-            List<uint> lengths = new List<uint>();
+            List<int> lengths = new List<int>();
 
-            uint length = 0;
+            int length = 0;
             foreach(var field in fields)
             {
                 if(field > 0)

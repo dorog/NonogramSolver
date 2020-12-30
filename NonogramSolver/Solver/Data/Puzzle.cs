@@ -4,8 +4,8 @@ namespace Solver.Data
 {
     public class Puzzle
     {
-        public List<List<uint>> Columns { get; set; }
-        public List<List<uint>> Rows { get; set; }
+        public List<List<int>> Columns { get; set; }
+        public List<List<int>> Rows { get; set; }
         public int[,] Matrix { get; set; }
 
         public int[] GetMatrixRow(int index)
@@ -22,11 +22,6 @@ namespace Solver.Data
 
         public void SetMatrixRow(int index, int[] row, int delay = 0)
         {
-            if(delay != 0)
-            {
-                System.Console.WriteLine("Not default: " + delay);
-            }
-
             for (int i = delay; i < Matrix.GetLength(1) && i < row.Length + delay; i++)
             {
                 Matrix[index, i] = row[i - delay];

@@ -11,7 +11,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NoLittlePlaceTest()
         {
-            uint number = 1;
+            int number = 1;
             int[] fields = new int[] { 0, -1, 0, 0, -1, 0 };
             int[] expected = new int[] { 0, -1, 0, 0, -1, 0 };
 
@@ -23,7 +23,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void StartLittlePlaceTest()
         {
-            uint number = 2;
+            int number = 2;
             int[] fields = new int[] { 0, -1, 0, 0, -1, 0, 0 };
             int[] expected = new int[] { -1, -1, 0, 0, -1, 0, 0 };
 
@@ -35,7 +35,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void EndLittlePlaceTest()
         {
-            uint number = 3;
+            int number = 3;
             int[] fields = new int[] { 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0 };
             int[] expected = new int[] { 0, 0, 0, -1, 0, 0, 0, 0, -1, -1, -1 };
 
@@ -47,7 +47,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void MiddleLittlePlaceTest()
         {
-            uint number = 2;
+            int number = 2;
             int[] fields = new int[] { 0, 0, 0, -1, 0, -1, 0, 0 };
             int[] expected = new int[] { 0, 0, 0, -1, -1, -1, 0, 0 };
 
@@ -59,7 +59,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void AllLittlePlaceTest()
         {
-            uint number = 5;
+            int number = 5;
             int[] fields = new int[] { 0, 0, 0, -1, 0, -1, 1, 1, 1, 1, 1, -1, 0, 0 };
             int[] expected = new int[] { -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, - 1, -1, -1 };
 

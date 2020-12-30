@@ -4,7 +4,7 @@ namespace Solver.Engine.Rules.Simple.Impl
 {
     public class UnreachableRule : ISimpleRule
     {
-        public int[] Check(uint number, int[] fields)
+        public int[] Check(int number, int[] fields)
         {
             int? max = null;
             int? min = null;
@@ -30,7 +30,7 @@ namespace Solver.Engine.Rules.Simple.Impl
             return fields;
         }
 
-        private int[] Fill(int min, int max, uint number, int[] fields)
+        private int[] Fill(int min, int max, int number, int[] fields)
         {
             long maxDistance = number - (max - min);
             if(maxDistance <= 0)

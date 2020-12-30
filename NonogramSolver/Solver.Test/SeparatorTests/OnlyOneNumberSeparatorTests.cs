@@ -13,7 +13,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void OneNumberTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 1, 1, 1, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -33,7 +33,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoNumberTest()
         {
-            List<uint> numbers = new List<uint> { 3, 1 };
+            List<int> numbers = new List<int> { 3, 1 };
             int[] fields = new int[] { 0, 1, 1, 1, 0, 0 };
             Range[] expected = new Range[]
             {

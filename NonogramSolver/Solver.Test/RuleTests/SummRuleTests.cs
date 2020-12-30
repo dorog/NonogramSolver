@@ -12,7 +12,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void FullWithOneNumberTest()
         {
-            List<uint> numbers = new List<uint>{ 5 };
+            List<int> numbers = new List<int>{ 5 };
             int[] fields = new int[5];
             int[] expected = new int[] { 1, 1, 1, 1, 1 };
 
@@ -24,7 +24,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void FullWithTwoNumberTest()
         {
-            List<uint> numbers = new List<uint> { 2, 2 };
+            List<int> numbers = new List<int> { 2, 2 };
             int[] fields = new int[5];
             int[] expected = new int[] { 1, 1, -1, 1, 1 };
 
@@ -36,7 +36,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void FullWithMoreNumberTest()
         {
-            List<uint> numbers = new List<uint> { 1, 1, 1 };
+            List<int> numbers = new List<int> { 1, 1, 1 };
             int[] fields = new int[5];
             int[] expected = new int[] { 1, -1, 1, -1, 1 };
 
@@ -48,7 +48,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NotFullWithOneNumberTest()
         {
-            List<uint> numbers = new List<uint> { 4 };
+            List<int> numbers = new List<int> { 4 };
             int[] fields = new int[5];
             int[] expected = new int[5];
 
@@ -60,7 +60,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NotFullWithTwoNumberTest()
         {
-            List<uint> numbers = new List<uint> { 2, 1 };
+            List<int> numbers = new List<int> { 2, 1 };
             int[] fields = new int[5];
             int[] expected = new int[5];
 
@@ -72,7 +72,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NotFullWithMoreNumberTest()
         {
-            List<uint> numbers = new List<uint> { 2, 1, 1 };
+            List<int> numbers = new List<int> { 2, 1, 1 };
             int[] fields = new int[7];
             int[] expected = new int[7];
 

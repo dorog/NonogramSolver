@@ -12,7 +12,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void OneAndNoEdgeTest()
         {
-            List<uint> numbers = new List<uint> { 5 };
+            List<int> numbers = new List<int> { 5 };
             int[] fields = new int[] { 1, 1, 1, 1, 1 };
             int[] expected = new int[] { 1, 1, 1, 1, 1 };
 
@@ -24,7 +24,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void OneAndStartEdgeTest()
         {
-            List<uint> numbers = new List<uint> { 5 };
+            List<int> numbers = new List<int> { 5 };
             int[] fields = new int[] { 0, 1, 1, 1, 1, 1 };
             int[] expected = new int[] { -1, 1, 1, 1, 1, 1 };
 
@@ -36,7 +36,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void OneAndEndEdgeTest()
         {
-            List<uint> numbers = new List<uint> { 5 };
+            List<int> numbers = new List<int> { 5 };
             int[] fields = new int[] { 1, 1, 1, 1, 1, 0 };
             int[] expected = new int[] { 1, 1, 1, 1, 1, -1 };
 
@@ -48,7 +48,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void OneAndDoubleEdgeTest()
         {
-            List<uint> numbers = new List<uint> { 5 };
+            List<int> numbers = new List<int> { 5 };
             int[] fields = new int[] { 0, 1, 1, 1, 1, 1, 0 };
             int[] expected = new int[] { -1, 1, 1, 1, 1, 1, -1 };
 
@@ -60,7 +60,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void MoreAndMiddleTest()
         {
-            List<uint> numbers = new List<uint> { 2, 2 };
+            List<int> numbers = new List<int> { 2, 2 };
             int[] fields = new int[] { 1, 1, 0, 1, 1 };
             int[] expected = new int[] { 1, 1, -1, 1, 1 };
 
@@ -72,7 +72,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void MoreAndAllTest()
         {
-            List<uint> numbers = new List<uint> { 2, 2 };
+            List<int> numbers = new List<int> { 2, 2 };
             int[] fields = new int[] { 0, 0, 1, 1, 0, 1, 1, 0 };
             int[] expected = new int[] { -1, -1, 1, 1, -1, 1, 1, -1 };
 
@@ -84,7 +84,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NotMatchStartTest()
         {
-            List<uint> numbers = new List<uint> { 3, 2 };
+            List<int> numbers = new List<int> { 3, 2 };
             int[] fields = new int[] { 0, 0, 1, 1, 0, 1, 1, 0 };
             int[] expected = new int[] { 0, 0, 1, 1, 0, 1, 1, 0 };
 
@@ -96,7 +96,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NotMatchEndTest()
         {
-            List<uint> numbers = new List<uint> { 2, 3 };
+            List<int> numbers = new List<int> { 2, 3 };
             int[] fields = new int[] { 0, 0, 1, 1, 0, 1, 1, 0 };
             int[] expected = new int[] { 0, 0, 1, 1, 0, 1, 1, 0 };
 
@@ -108,7 +108,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NotMatchMiddleTest()
         {
-            List<uint> numbers = new List<uint> { 2, 1, 3 };
+            List<int> numbers = new List<int> { 2, 1, 3 };
             int[] fields = new int[] { 0, 0, 1, 1, 0, 1, 0, 1, 1, 0 };
             int[] expected = new int[] { 0, 0, 1, 1, 0, 1, 0, 1, 1, 0 };
 

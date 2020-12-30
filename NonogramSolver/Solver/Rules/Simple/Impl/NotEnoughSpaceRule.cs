@@ -4,7 +4,7 @@ namespace Solver.Engine.Rules.Simple.Impl
 {
     public class NotEnoughSpaceRule : ISimpleRule
     {
-        public int[] Check(uint number, int[] fields)
+        public int[] Check(int number, int[] fields)
         {
             List<int> whiteFieldPositions = new List<int>()
             {

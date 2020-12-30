@@ -8,9 +8,9 @@ namespace Solver.Engine.Rules.Complex.Impl
     {
         private readonly NotEnoughSpaceRule notEnoughSpaceRule = new NotEnoughSpaceRule();
 
-        public int[] Check(List<uint> numbers, int[] fields)
+        public int[] Check(List<int> numbers, int[] fields)
         {
-            uint smallest = numbers.OrderBy(x => x).First();
+            int smallest = numbers.OrderBy(x => x).First();
 
             return notEnoughSpaceRule.Check(smallest, fields);
         }

@@ -1,5 +1,4 @@
-﻿
-using System.Linq;
+﻿using System.Linq;
 
 namespace Solver.Engine.Data
 {
@@ -9,7 +8,7 @@ namespace Solver.Engine.Data
         public int Index { get; set; }
         public int Delay { get; set; }
         public int[] Fields { get; set; }
-        public uint Number { get; set; }
+        public int Number { get; set; }
 
         public bool IsDone()
         {

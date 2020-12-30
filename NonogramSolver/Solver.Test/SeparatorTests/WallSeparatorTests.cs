@@ -13,7 +13,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void NoRangeTest()
         {
-            List<uint> numbers = new List<uint> { 2, 3 };
+            List<int> numbers = new List<int> { 2, 3 };
             int[] fields = new int[] { 0, 1, 0, 1, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -29,7 +29,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void OneRangeFullTest()
         {
-            List<uint> numbers = new List<uint> { 5 };
+            List<int> numbers = new List<int> { 5 };
             int[] fields = new int[] { 1, 1, 1, 1, 1 };
             Range[] expected = new Range[] 
             {
@@ -44,7 +44,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void OneRangeStartTest()
         {
-            List<uint> numbers = new List<uint> { 4 };
+            List<int> numbers = new List<int> { 4 };
             int[] fields = new int[] { 1, 1, 1, 1, 1 };
             Range[] expected = new Range[]
             {
@@ -59,7 +59,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void OneRangeEndTest()
         {
-            List<uint> numbers = new List<uint> { 4 };
+            List<int> numbers = new List<int> { 4 };
             int[] fields = new int[] { 0, 1, 1, 1, 1 };
             Range[] expected = new Range[]
             {
@@ -74,7 +74,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoRangeBothTest()
         {
-            List<uint> numbers = new List<uint> { 2, 3 };
+            List<int> numbers = new List<int> { 2, 3 };
             int[] fields = new int[] { 1, 1, 0, 1, 1, 1 };
             Range[] expected = new Range[]
             {
@@ -90,7 +90,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoRangeStartTest()
         {
-            List<uint> numbers = new List<uint> { 2, 3 };
+            List<int> numbers = new List<int> { 2, 3 };
             int[] fields = new int[] { 1, 1, 0, 0, 1, 0 };
             Range[] expected = new Range[]
             {
@@ -106,7 +106,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoRangeEndTest()
         {
-            List<uint> numbers = new List<uint> { 2, 3 };
+            List<int> numbers = new List<int> { 2, 3 };
             int[] fields = new int[] { 0, 1, 0, 0, 0, 1 };
             Range[] expected = new Range[]
             {
@@ -122,7 +122,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void MoreRangeBothTest()
         {
-            List<uint> numbers = new List<uint> { 2, 2, 3 };
+            List<int> numbers = new List<int> { 2, 2, 3 };
             int[] fields = new int[] { 1, 0, 0, 1, 0, 0, 0, 1 };
             Range[] expected = new Range[]
             {
@@ -139,7 +139,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void MoreRangeEndTest()
         {
-            List<uint> numbers = new List<uint> { 2, 2, 3 };
+            List<int> numbers = new List<int> { 2, 2, 3 };
             int[] fields = new int[] { 0, 0, 0, 0, 0, 0, 0, 1 };
             Range[] expected = new Range[]
             {
@@ -168,7 +168,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void MoreRangeStartTest()
         {
-            List<uint> numbers = new List<uint> { 2, 2, 3 };
+            List<int> numbers = new List<int> { 2, 2, 3 };
             int[] fields = new int[] { 1, 0, 0, 0, 0, 0, 0, 0 };
             Range[] expected = new Range[]
             {

@@ -11,7 +11,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void FullTest()
         {
-            uint number =  5 ;
+            int number =  5 ;
             int[] fields = new int[5];
             int[] expected = new int[] { 1, 1, 1, 1, 1 };
 
@@ -23,7 +23,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void MoreThanHalfTest()
         {
-            uint number = 3;
+            int number = 3;
             int[] fields = new int[5];
             int[] expected = new int[] { 0, 0, 1, 0, 0 };
 
@@ -35,7 +35,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void HalfTest()
         {
-            uint number = 3;
+            int number = 3;
             int[] fields = new int[6];
             int[] expected = new int[] { 0, 0, 0, 0, 0, 0 };
 
@@ -47,7 +47,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void LessThanHalfTest()
         {
-            uint number = 2;
+            int number = 2;
             int[] fields = new int[6];
             int[] expected = new int[] { 0, 0, 0, 0, 0, 0 };
 
@@ -59,7 +59,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NotEmpyRowAndMoreThanHalfTest()
         {
-            uint number = 3;
+            int number = 3;
             int[] fields = new int[5] { 0, 0, 0, 0, 1 };
             int[] expected = new int[] { 0, 0, 1, 0, 1 };
 

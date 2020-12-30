@@ -13,7 +13,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void OneNumberNoWhiteTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 1, 1, 1, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -32,7 +32,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoNumberNoWhiteTest()
         {
-            List<uint> numbers = new List<uint> { 3, 1 };
+            List<int> numbers = new List<int> { 3, 1 };
             int[] fields = new int[] { 0, 1, 1, 1, 0, 1 };
             Range[] expected = new Range[]
             {
@@ -48,7 +48,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void MoreNumberNoWhiteTest()
         {
-            List<uint> numbers = new List<uint> { 3, 1, 1 };
+            List<int> numbers = new List<int> { 3, 1, 1 };
             int[] fields = new int[] { 0, 1, 1, 1, 0, 1, 0, 1 };
             Range[] expected = new Range[]
             {
@@ -65,7 +65,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void OneNumberOneWhiteStartTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { -1, 1, 1, 1, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -84,7 +84,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void OneNumberOneWhiteEndTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 1, 1, 1, 0, -1 };
             Range[] expected = new Range[]
             {
@@ -103,7 +103,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void OneNumberOneWhiteMiddleTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 1, 1, 1, -1, 0 };
             Range[] expected = new Range[]
             {
@@ -118,7 +118,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoNumberOneWhiteMiddleTest()
         {
-            List<uint> numbers = new List<uint> { 3, 1 };
+            List<int> numbers = new List<int> { 3, 1 };
             int[] fields = new int[] { 0, 1, 1, 1, -1, 0 };
             Range[] expected = new Range[]
             {
@@ -134,7 +134,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoNumberOneWhiteEndTest()
         {
-            List<uint> numbers = new List<uint> { 3, 1 };
+            List<int> numbers = new List<int> { 3, 1 };
             int[] fields = new int[] { 0, 1, 1, 1, 0, 1, 0, -1 };
             Range[] expected = new Range[]
             {
@@ -150,7 +150,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void TwoNumberOneWhiteStartTest()
         {
-            List<uint> numbers = new List<uint> { 3, 1 };
+            List<int> numbers = new List<int> { 3, 1 };
             int[] fields = new int[] { -1, 1, 1, 1, 0, 1, 0, 0 };
             Range[] expected = new Range[]
             {

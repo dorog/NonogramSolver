@@ -11,7 +11,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NoUnreachableMiddleTest()
         {
-            uint number = 5;
+            int number = 5;
             int[] fields = new int[] { 0, 1, 1, 1, 0 };
             int[] expected = new int[] { 0, 1, 1, 1, 0 };
 
@@ -23,7 +23,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NoChangesFullTest()
         {
-            uint number = 5;
+            int number = 5;
             int[] fields = new int[] { 1, 1, 1, 1, 1 };
             int[] expected = new int[] { 1, 1, 1, 1, 1 };
 
@@ -35,7 +35,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NoUnreachableEndTest()
         {
-            uint number = 5;
+            int number = 5;
             int[] fields = new int[] { 0, 0, 1, 1, 1 };
             int[] expected = new int[] { 0, 0, 1, 1, 1 };
 
@@ -47,7 +47,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void NoUnreachableStartTest()
         {
-            uint number = 5;
+            int number = 5;
             int[] fields = new int[] { 1, 1, 1, 0, 0 };
             int[] expected = new int[] { 1, 1, 1, 0 ,0  };
 
@@ -59,7 +59,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void UnreachableEndTest()
         {
-            uint number = 3;
+            int number = 3;
             int[] fields = new int[] { 0, 1, 1, 0, 0, 0 };
             int[] expected = new int[] { 0, 1, 1, 0, -1, -1 };
 
@@ -71,7 +71,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void UnreachableStartTest()
         {
-            uint number = 3;
+            int number = 3;
             int[] fields = new int[] { 0, 0, 0, 1, 1, 0 };
             int[] expected = new int[] { -1, -1, 0, 1, 1, 0 };
 
@@ -83,7 +83,7 @@ namespace Solver.Test.RuleTests
         [TestMethod]
         public void UnreachableStartAndEndTest()
         {
-            uint number = 3;
+            int number = 3;
             int[] fields = new int[] { 0, 0, 1, 1, 0, 0 };
             int[] expected = new int[] { -1, 0, 1, 1, 0, -1 };
 

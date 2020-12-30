@@ -13,7 +13,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void NoWhiteFieldWithOneNumberTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 1, 1, 1, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -28,7 +28,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void NoWhiteFieldWithMoreNumberTest()
         {
-            List<uint> numbers = new List<uint> { 3, 1 };
+            List<int> numbers = new List<int> { 3, 1 };
             int[] fields = new int[] { 0, 1, 1, 1, 0, 1 };
             Range[] expected = new Range[]
             {
@@ -44,7 +44,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void WhiteFieldWithOneNumberButWithoutSolidTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 0, 0, -1, 0, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -59,7 +59,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void WhiteFieldWithOneNumberWithSolidStartPerfectTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 1, 0, -1, 0, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -78,7 +78,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void WhiteFieldWithOneNumberWithSolidStartGreaterWithOneTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 1, 0, 0, 0, -1, 0, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -97,7 +97,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void WhiteFieldWithOneNumberWithSolidStartGreaterWithMoreTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 1, 0, 0, 0, -1, 0, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -112,7 +112,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void WhiteFieldWithOneNumberWithSolidEndPerfectTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 0, 0, -1, 0, 0, 1 };
             Range[] expected = new Range[]
             {
@@ -131,7 +131,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void WhiteFieldWithOneNumberWithSolidEndGreaterWithOneTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 0, 0, -1, 1, 0, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -150,7 +150,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void WhiteFieldWithOneNumberWithSolidEndGreaterWithMoreTest()
         {
-            List<uint> numbers = new List<uint> { 3 };
+            List<int> numbers = new List<int> { 3 };
             int[] fields = new int[] { 0, 0, 0, -1, 0, 1, 0, 0, 0 };
             Range[] expected = new Range[]
             {
@@ -165,7 +165,7 @@ namespace Solver.Test.SeparatorTests
         [TestMethod]
         public void WhiteFieldWithTwoNumberTest()
         {
-            List<uint> numbers = new List<uint> { 1, 3 };
+            List<int> numbers = new List<int> { 1, 3 };
             int[] fields = new int[] { 0, 1, -1, 1, 0, 0 };
             Range[] expected = new Range[]
             {

@@ -5,12 +5,12 @@ namespace Solver.Engine.Separators.Impl
 {
     public class TwoNumberDistanceSeparator : ISeparator
     {
-        public Range[] Separate(List<uint> numbers, int[] fields)
+        public Range[] Separate(List<int> numbers, int[] fields)
         {
             Range[] ranges = new Range[numbers.Count];
             if(numbers.Count == 2)
             {
-                uint max = numbers[0] + numbers[1];
+                int max = numbers[0] + numbers[1];
                 List<int> solidPositions = new List<int>();
                 for(int i = 0; i < fields.Length; i++)
                 {
@@ -24,7 +24,7 @@ namespace Solver.Engine.Separators.Impl
                 {
                     if(solidPositions[i] - solidPositions[i-1] >= max)
                     {
-                        uint middle = (uint) (solidPositions[i - 1] + numbers[0]);
+                        int middle = (int) (solidPositions[i - 1] + numbers[0]);
                         ranges[0] = new Range()
                         {
                             Start = 0,
@@ -33,7 +33,7 @@ namespace Solver.Engine.Separators.Impl
                         ranges[1] = new Range()
                         {
                             Start = middle + 1,
-                            End = (uint)fields.Length - 1
+                            End = (int)fields.Length - 1
                         };
 
                         return ranges;

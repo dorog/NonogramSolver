@@ -16,23 +16,23 @@ namespace Solver.Test.SolverEngineTests
         {
             Puzzle puzzle = new Puzzle()
             {
-                Rows = new List<List<uint>>()
+                Rows = new List<List<int>>()
                 {
-                    new List<uint>() { 2, 1 },
-                    new List<uint>() { 1, 3 },
-                    new List<uint>() { 1, 2 },
-                    new List<uint>() { 3 },
-                    new List<uint>() { 4 },
-                    new List<uint>() { 1 }
+                    new List<int>() { 2, 1 },
+                    new List<int>() { 1, 3 },
+                    new List<int>() { 1, 2 },
+                    new List<int>() { 3 },
+                    new List<int>() { 4 },
+                    new List<int>() { 1 }
                 },
-                Columns = new List<List<uint>>()
+                Columns = new List<List<int>>()
                 {
-                    new List<uint>() { 1 },
-                    new List<uint>() { 5 },
-                    new List<uint>() { 2 },
-                    new List<uint>() { 5 },
-                    new List<uint>() { 2, 1 },
-                    new List<uint>() { 2 }
+                    new List<int>() { 1 },
+                    new List<int>() { 5 },
+                    new List<int>() { 2 },
+                    new List<int>() { 5 },
+                    new List<int>() { 2, 1 },
+                    new List<int>() { 2 }
                 },
                 Matrix = new int[6, 6]
             };
@@ -57,21 +57,21 @@ namespace Solver.Test.SolverEngineTests
         {
             Puzzle puzzle = new Puzzle()
             {
-                Rows = new List<List<uint>>()
+                Rows = new List<List<int>>()
                 {
-                    new List<uint>() { 5 },
-                    new List<uint>() { 5 },
-                    new List<uint>() { 5 },
-                    new List<uint>() { 3 },
-                    new List<uint>() { 1 },
+                    new List<int>() { 5 },
+                    new List<int>() { 5 },
+                    new List<int>() { 5 },
+                    new List<int>() { 3 },
+                    new List<int>() { 1 },
                 },
-                Columns = new List<List<uint>>()
+                Columns = new List<List<int>>()
                 {
-                    new List<uint>() { 3 },
-                    new List<uint>() { 4 },
-                    new List<uint>() { 5 },
-                    new List<uint>() { 4 },
-                    new List<uint>() { 3 },
+                    new List<int>() { 3 },
+                    new List<int>() { 4 },
+                    new List<int>() { 5 },
+                    new List<int>() { 4 },
+                    new List<int>() { 3 },
                 },
                 Matrix = new int[5, 5]
             };
@@ -95,31 +95,31 @@ namespace Solver.Test.SolverEngineTests
         {
             Puzzle puzzle = new Puzzle()
             {
-                Rows = new List<List<uint>>()
+                Rows = new List<List<int>>()
                 {
-                    new List<uint>() { 6 },
-                    new List<uint>() { 8 },
-                    new List<uint>() { 10 },
-                    new List<uint>() { 10 },
-                    new List<uint>() { 8 },
-                    new List<uint>() { 3, 1 },
-                    new List<uint>() { 3 },
-                    new List<uint>() { 1 },
-                    new List<uint>() { 6 },
-                    new List<uint>() { 4 },
+                    new List<int>() { 6 },
+                    new List<int>() { 8 },
+                    new List<int>() { 10 },
+                    new List<int>() { 10 },
+                    new List<int>() { 8 },
+                    new List<int>() { 3, 1 },
+                    new List<int>() { 3 },
+                    new List<int>() { 1 },
+                    new List<int>() { 6 },
+                    new List<int>() { 4 },
                 },
-                Columns = new List<List<uint>>()
+                Columns = new List<List<int>>()
                 {
-                    new List<uint>() { 2 },
-                    new List<uint>() { 4 },
-                    new List<uint>() { 6, 1 },
-                    new List<uint>() { 6, 2 },
-                    new List<uint>() { 10 },
-                    new List<uint>() { 5, 1, 2 },
-                    new List<uint>() { 7, 2 },
-                    new List<uint>() { 5, 1 },
-                    new List<uint>() { 4 },
-                    new List<uint>() { 2 },
+                    new List<int>() { 2 },
+                    new List<int>() { 4 },
+                    new List<int>() { 6, 1 },
+                    new List<int>() { 6, 2 },
+                    new List<int>() { 10 },
+                    new List<int>() { 5, 1, 2 },
+                    new List<int>() { 7, 2 },
+                    new List<int>() { 5, 1 },
+                    new List<int>() { 4 },
+                    new List<int>() { 2 },
                 },
                 Matrix = new int[10, 10]
             };
@@ -148,41 +148,41 @@ namespace Solver.Test.SolverEngineTests
         {
             Puzzle puzzle = new Puzzle()
             {
-                Rows = new List<List<uint>>()
+                Rows = new List<List<int>>()
                 {
-                    new List<uint>() { 7 },
-                    new List<uint>() { 9 },
-                    new List<uint>() { 2, 4, 2 },
-                    new List<uint>() { 2, 2 },
-                    new List<uint>() { 2, 1, 1, 2 },
-                    new List<uint>() { 3, 2 },
-                    new List<uint>() { 2, 2 },
-                    new List<uint>() { 3, 3, 1 },
-                    new List<uint>() { 9, 1 },
-                    new List<uint>() { 9, 1 },
-                    new List<uint>() { 11, 2 },
-                    new List<uint>() { 15 },
-                    new List<uint>() { 14 },
-                    new List<uint>() { 2, 3, 2 },
-                    new List<uint>() { 1, 1, 1, 1, 1, 1, 1 },
+                    new List<int>() { 7 },
+                    new List<int>() { 9 },
+                    new List<int>() { 2, 4, 2 },
+                    new List<int>() { 2, 2 },
+                    new List<int>() { 2, 1, 1, 2 },
+                    new List<int>() { 3, 2 },
+                    new List<int>() { 2, 2 },
+                    new List<int>() { 3, 3, 1 },
+                    new List<int>() { 9, 1 },
+                    new List<int>() { 9, 1 },
+                    new List<int>() { 11, 2 },
+                    new List<int>() { 15 },
+                    new List<int>() { 14 },
+                    new List<int>() { 2, 3, 2 },
+                    new List<int>() { 1, 1, 1, 1, 1, 1, 1 },
                 },
-                Columns = new List<List<uint>>()
+                Columns = new List<List<int>>()
                 {
-                    new List<uint>() { 4 },
-                    new List<uint>() { 6, 4 },
-                    new List<uint>() { 12, 1 },
-                    new List<uint>() { 2, 1, 6 },
-                    new List<uint>() { 2, 5, 1 },
-                    new List<uint>() { 3, 1, 6 },
-                    new List<uint>() { 3, 7 },
-                    new List<uint>() { 3, 6 },
-                    new List<uint>() { 3, 1, 5, 1 },
-                    new List<uint>() { 2, 6 },
-                    new List<uint>() { 12, 1 },
-                    new List<uint>() { 6, 4 },
-                    new List<uint>() { 4 },
-                    new List<uint>() { 3 },
-                    new List<uint>() { 5 },
+                    new List<int>() { 4 },
+                    new List<int>() { 6, 4 },
+                    new List<int>() { 12, 1 },
+                    new List<int>() { 2, 1, 6 },
+                    new List<int>() { 2, 5, 1 },
+                    new List<int>() { 3, 1, 6 },
+                    new List<int>() { 3, 7 },
+                    new List<int>() { 3, 6 },
+                    new List<int>() { 3, 1, 5, 1 },
+                    new List<int>() { 2, 6 },
+                    new List<int>() { 12, 1 },
+                    new List<int>() { 6, 4 },
+                    new List<int>() { 4 },
+                    new List<int>() { 3 },
+                    new List<int>() { 5 },
                 },
                 Matrix = new int[15, 15]
             };

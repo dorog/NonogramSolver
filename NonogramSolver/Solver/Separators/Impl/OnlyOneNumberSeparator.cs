@@ -5,7 +5,7 @@ namespace Solver.Engine.Separators.Impl
 {
     public class OnlyOneNumberSeparator : ISeparator
     {
-        public Range[] Separate(List<uint> numbers, int[] fields)
+        public Range[] Separate(List<int> numbers, int[] fields)
         {
             Range[] ranges = new Range[numbers.Count];
             if(numbers.Count == 1)
@@ -13,7 +13,7 @@ namespace Solver.Engine.Separators.Impl
                 ranges[0] = new Range()
                 {
                     Start = 0,
-                    End = (uint)fields.Length - 1
+                    End = (int)fields.Length - 1
                 };
             }
 
