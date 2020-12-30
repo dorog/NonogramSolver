@@ -15,7 +15,8 @@ namespace Solver.Engine
     {
         private static readonly List<IComplexRule> complexRules = new List<IComplexRule>()
         {
-            new DoneRule()
+            new DoneRule(),
+            new TooSmallSpaceRule()
         };
 
         private static readonly List<ISimpleRule> simpleRules = new List<ISimpleRule>()
@@ -32,7 +33,8 @@ namespace Solver.Engine
             new TwoNumberDistanceSeparator(),
             new WallSeparator(),
             new OnlyOneNumberSeparator(),
-            new EndSeparator()
+            new EndSeparator(),
+            new HoleNumberSeparator()
         };
 
         private static readonly List<NumberListRange> numberListRanges = new List<NumberListRange>();
@@ -62,7 +64,9 @@ namespace Solver.Engine
 
                 RefreshNumberListRanges(puzzle);
 
-                CutUnnecessaryEnds();
+                CutUnnecessaryNumberedRangesEnds();
+
+                CutUnnecessaryNumberListRangesEnds();
 
                 CalculateNumberedRanges();
 
@@ -104,6 +108,8 @@ namespace Solver.Engine
             foreach (var complexRule in complexRules)
             {
                 ApplyComplexRuleOnThePuzzle(puzzle, complexRule);
+
+                RefreshNumberedRanges(puzzle);
             }
         }
 
@@ -188,7 +194,7 @@ namespace Solver.Engine
             }
         }
 
-        private static void CutUnnecessaryEnds()
+        private static void CutUnnecessaryNumberedRangesEnds()
         {
             foreach(var numberedRange in notDoneRanges)
             {
@@ -199,7 +205,7 @@ namespace Solver.Engine
                 }
 
                 int maxPosition = numberedRange.Fields.Length - 1;
-                while (maxPosition >=0 && numberedRange.Fields[maxPosition] == -1)
+                while (maxPosition >= 0 && numberedRange.Fields[maxPosition] == -1)
                 {
                     maxPosition--;
                 }
@@ -212,6 +218,33 @@ namespace Solver.Engine
 
                 numberedRange.Delay += minPosition;
                 numberedRange.Fields = cutFields;
+            }
+        }
+
+        private static void CutUnnecessaryNumberListRangesEnds()
+        {
+            foreach (var numberListRange in numberListRanges)
+            {
+                int minPosition = 0;
+                while (minPosition < numberListRange.Fields.Length && numberListRange.Fields[minPosition] == -1)
+                {
+                    minPosition++;
+                }
+
+                int maxPosition = numberListRange.Fields.Length - 1;
+                while (maxPosition >= 0 && numberListRange.Fields[maxPosition] == -1)
+                {
+                    maxPosition--;
+                }
+
+                int[] cutFields = new int[maxPosition - minPosition + 1];
+                for (int i = minPosition; i <= maxPosition; i++)
+                {
+                    cutFields[i - minPosition] = numberListRange.Fields[i];
+                }
+
+                numberListRange.Delay += minPosition;
+                numberListRange.Fields = cutFields;
             }
         }
 
@@ -231,8 +264,9 @@ namespace Solver.Engine
                     {
                         separatedListIndexes.Add(index);
 
-                        List<uint> numbersInGroup = new List<uint>();
+                        List<int> numbersInGroup = new List<int>();
                         int delay = 0;
+
                         for (int i = 0; i < ranges.Length; i++)
                         {
                             if (ranges[i] == null)
@@ -247,8 +281,8 @@ namespace Solver.Engine
                                     {
                                         RangeType = numberListRange.RangeType,
                                         Index = numberListRange.Index,
-                                        Delay = delay,
-                                        Fields = GetNumberedRangeFields(numberListRange, new Range() { Start = (uint)delay, End = ranges[i].Start - 1 }),
+                                        Delay = delay + numberListRange.Delay,
+                                        Fields = GetNumberedRangeFields(numberListRange, new Range() { Start = delay, End = ranges[i].Start - 1 }),
                                         Numbers = numbersInGroup.ToList()
                                     });
 
@@ -259,12 +293,12 @@ namespace Solver.Engine
                                 {
                                     RangeType = numberListRange.RangeType,
                                     Index = numberListRange.Index,
-                                    Delay = (int)(numberListRange.Delay + ranges[i].Start),
+                                    Delay = (numberListRange.Delay + ranges[i].Start),
                                     Fields = GetNumberedRangeFields(numberListRange, ranges[i]),
                                     Number = numberListRange.Numbers[i]
                                 });
 
-                                delay += (int)ranges[i].End + 1;
+                                delay += ranges[i].End + 1;
                             }
                         }
 
@@ -274,10 +308,11 @@ namespace Solver.Engine
                             {
                                 RangeType = numberListRange.RangeType,
                                 Index = numberListRange.Index,
-                                Delay = delay,
-                                Fields = GetNumberedRangeFields(numberListRange, new Range() { Start = (uint)delay, End = (uint)(numberListRange.Fields.Length - 1) }),
+                                Delay = delay + numberListRange.Delay,
+                                Fields = GetNumberedRangeFields(numberListRange, new Range() { Start = delay, End = (numberListRange.Fields.Length - 1) }),
                                 Numbers = numbersInGroup
                             });
+
                         }
 
                         break;
