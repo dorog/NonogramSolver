@@ -31,7 +31,7 @@ namespace Solver.Engine.Separators.Impl
                 int lastFieldIndex = fields.Length - 1;
                 if (lastFieldIndex - lastWhiteLocation <= numbers[^1] + 1 && lastFieldIndex - lastWhiteLocation >= numbers[^1] && SolidExists(lastWhiteLocation, lastFieldIndex + 1, fields))
                 {
-                    ranges[0] = new Range()
+                    ranges[^1] = new Range()
                     {
                         Start = (uint)(lastWhiteLocation + 1),
                         End = (uint)fields.Length - 1

@@ -161,5 +161,21 @@ namespace Solver.Test.SeparatorTests
 
             CollectionAssert.AreEqual(expected, results);
         }
+
+        [TestMethod]
+        public void WhiteFieldWithTwoNumberTest()
+        {
+            List<uint> numbers = new List<uint> { 1, 3 };
+            int[] fields = new int[] { 0, 1, -1, 1, 0, 0 };
+            Range[] expected = new Range[]
+            {
+                new Range(){ Start = 0, End = 1 },
+                new Range(){ Start = 3, End = 5 },
+            };
+
+            var results = endSeparator.Separate(numbers, fields);
+
+            CollectionAssert.AreEqual(expected, results);
+        }
     }
 }
