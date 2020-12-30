@@ -12,7 +12,7 @@ namespace Solver.Test.SolverEngineTests
         private static readonly int empty = -1;
 
         [TestMethod]
-        public void OneNumberRangeTest()
+        public void BirdNonogramTest()
         {
             Puzzle puzzle = new Puzzle()
             {
@@ -49,16 +49,7 @@ namespace Solver.Test.SolverEngineTests
 
             var solvedPuzzleMatrix = solvedPuzzle.Matrix;
 
-            Assert.AreEqual(matrixSolution.GetLength(0), solvedPuzzleMatrix.GetLength(0));
-            Assert.AreEqual(matrixSolution.GetLength(1), solvedPuzzleMatrix.GetLength(1));
-
-            for(int i = 0; i < matrixSolution.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrixSolution.GetLength(1); j++)
-                {
-                    Assert.AreEqual(matrixSolution[i, j], solvedPuzzleMatrix[i, j]);
-                }
-            }
+            TestResult(matrixSolution, solvedPuzzleMatrix);
         }
 
         [TestMethod]
@@ -96,14 +87,19 @@ namespace Solver.Test.SolverEngineTests
 
             var solvedPuzzleMatrix = solvedPuzzle.Matrix;
 
-            Assert.AreEqual(matrixSolution.GetLength(0), solvedPuzzleMatrix.GetLength(0), "Diff Lengths: Rows");
-            Assert.AreEqual(matrixSolution.GetLength(1), solvedPuzzleMatrix.GetLength(1), "Diff Lengths: Columns");
+            TestResult(matrixSolution, solvedPuzzleMatrix);
+        }
 
-            for (int i = 0; i < matrixSolution.GetLength(0); i++)
+        private void TestResult(int[,] solution, int[,] solved)
+        {
+            Assert.AreEqual(solution.GetLength(0), solved.GetLength(0), "Diff Lengths: Rows");
+            Assert.AreEqual(solution.GetLength(1), solved.GetLength(1), "Diff Lengths: Columns");
+
+            for (int i = 0; i < solution.GetLength(0); i++)
             {
-                for (int j = 0; j < matrixSolution.GetLength(1); j++)
+                for (int j = 0; j < solution.GetLength(1); j++)
                 {
-                    Assert.AreEqual(matrixSolution[i, j], solvedPuzzleMatrix[i, j], "Matrix Value diff: " + "[" + i + ", " + j+ "]");
+                    Assert.AreEqual(solution[i, j], solved[i, j], "Matrix Value diff: " + "[" + i + ", " + j + "]");
                 }
             }
         }
