@@ -62,6 +62,8 @@ namespace Solver.Engine
 
                 RefreshNumberListRanges(puzzle);
 
+                CutUnnecessaryEnds();
+
                 CalculateNumberedRanges();
 
                 actualStep++;
@@ -183,6 +185,33 @@ namespace Solver.Engine
                 {
                     numberListRange.Fields[i] = fields[numberListRange.Delay + i];
                 }
+            }
+        }
+
+        private static void CutUnnecessaryEnds()
+        {
+            foreach(var numberedRange in notDoneRanges)
+            {
+                int minPosition = 0;
+                while(minPosition < numberedRange.Fields.Length && numberedRange.Fields[minPosition] == -1)
+                {
+                    minPosition++;
+                }
+
+                int maxPosition = numberedRange.Fields.Length - 1;
+                while (maxPosition >=0 && numberedRange.Fields[maxPosition] == -1)
+                {
+                    maxPosition--;
+                }
+
+                int[] cutFields = new int[maxPosition - minPosition + 1];
+                for(int i = minPosition; i <= maxPosition; i++)
+                {
+                    cutFields[i - minPosition] = numberedRange.Fields[i];
+                }
+
+                numberedRange.Delay += minPosition;
+                numberedRange.Fields = cutFields;
             }
         }
 
