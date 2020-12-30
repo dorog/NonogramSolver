@@ -211,6 +211,74 @@ namespace Solver.Test.SolverEngineTests
             TestResult(matrixSolution, solvedPuzzleMatrix);
         }
 
+        [TestMethod]
+        public void FlamingoNonogramTest()
+        {
+            Puzzle puzzle = new Puzzle()
+            {
+                Rows = new List<List<int>>()
+                {
+                    new List<int>() { 4 },
+                    new List<int>() { 6 },
+                    new List<int>() { 3, 3 },
+                    new List<int>() { 7 },
+                    new List<int>() { 7 },
+                    new List<int>() { 1, 3 },
+                    new List<int>() { 3 },
+                    new List<int>() { 3, 5 },
+                    new List<int>() { 4, 7 },
+                    new List<int>() { 13 },
+                    new List<int>() { 13 },
+                    new List<int>() { 13 },
+                    new List<int>() { 13 },
+                    new List<int>() { 13 },
+                    new List<int>() { 11 }
+                },
+                Columns = new List<List<int>>()
+                {
+                    new List<int>() { 4 },
+                    new List<int>() { 4 },
+                    new List<int>() { 5, 6 },
+                    new List<int>() { 2, 2, 9 },
+                    new List<int>() { 15 },
+                    new List<int>() { 15 },
+                    new List<int>() { 5, 6 },
+                    new List<int>() { 7 },
+                    new List<int>() { 8 },
+                    new List<int>() { 8 },
+                    new List<int>() { 8 },
+                    new List<int>() { 8 },
+                    new List<int>() { 8 },
+                    new List<int>() { 7 },
+                    new List<int>() { 5 }
+                },
+                Matrix = new int[15, 15]
+            };
+            int[,] matrixSolution = {
+                { empty, empty, solid, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, solid, solid, solid, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty },
+                { solid, solid, solid, empty, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty },
+                { solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty },
+                { solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty },
+                { solid, empty, empty, empty, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, solid, solid, solid, empty, empty, solid, solid, solid, solid, solid, empty, empty },
+                { empty, empty, solid, solid, solid, solid, empty, solid, solid, solid, solid, solid, solid, solid, empty },
+                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { empty, empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty },
+            };
+
+            var solvedPuzzle = SolverEngine.Solve(puzzle);
+
+            var solvedPuzzleMatrix = solvedPuzzle.Matrix;
+
+            TestResult(matrixSolution, solvedPuzzleMatrix);
+        }
+
         private void TestResult(int[,] solution, int[,] solved)
         {
             Assert.AreEqual(solution.GetLength(0), solved.GetLength(0), "Diff Lengths: Rows");
