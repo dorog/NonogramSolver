@@ -26,10 +26,6 @@ namespace Solver.Engine.Rules.Complex.Impl
 
             lengths.RemoveAll(x => x == 0);
 
-            foreach(var length1 in lengths)
-            {
-                System.Console.WriteLine(length1);
-            }
             if(lengths.Count == numbers.Count)
             {
                 for(int i = 0; i < lengths.Count; i++)
