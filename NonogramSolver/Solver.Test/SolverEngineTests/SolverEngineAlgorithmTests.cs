@@ -187,21 +187,21 @@ namespace Solver.Test.SolverEngineTests
                 Matrix = new int[15, 15]
             };
             int[,] matrixSolution = {
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, empty, empty },
+                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, empty },
+                { empty, solid, solid, empty, empty, solid, solid, solid, solid, empty, solid, solid, empty, empty, empty },
+                { empty, solid, solid, empty, empty, empty, empty, empty, empty, empty, solid, solid, empty, empty, empty },
+                { empty, solid, solid, empty, empty, solid, empty, empty, solid, empty, solid, solid, empty, empty, empty },
+                { empty, solid, solid, solid, empty, empty, empty, empty, empty, empty, solid, solid, empty, empty, empty },
+                { empty, solid, solid, empty, empty, empty, empty, empty, empty, empty, solid, solid, empty, empty, empty },
+                { empty, solid, solid, solid, empty, empty, empty, empty, empty, solid, solid, solid, empty, empty, solid },
+                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, solid },
+                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, solid },
+                { empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty, solid, solid },
+                { solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty },
+                { solid, solid, empty, empty, empty, solid, solid, solid, empty, empty, empty, solid, solid, empty, empty },
+                { solid, empty, solid, empty, solid, empty, solid, empty, solid, empty, solid, empty, solid, empty, empty },
             };
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
