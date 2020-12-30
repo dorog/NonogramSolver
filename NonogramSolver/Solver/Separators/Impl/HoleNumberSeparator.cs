@@ -11,6 +11,14 @@ namespace Solver.Engine.Separators.Impl
 
             if(holes.Count == numbers.Count)
             {
+                for(int i = 0; i < holes.Count; i++)
+                {
+                    uint place = holes[i].End - holes[i].Start + 1;
+                    if(place < numbers[i])
+                    {
+                        return new Range[numbers.Count];
+                    }
+                }
                 return holes.ToArray();
             }
             else
