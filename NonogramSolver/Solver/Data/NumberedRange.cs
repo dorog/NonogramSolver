@@ -1,4 +1,6 @@
 ﻿
+using System.Linq;
+
 namespace Solver.Engine.Data
 {
     public class NumberedRange
@@ -11,15 +13,7 @@ namespace Solver.Engine.Data
 
         public bool IsDone()
         {
-            foreach(var field in Fields)
-            {
-                if(field != -1 || field != 1)
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return !Fields.Any(x => x == 0);
         }
     }
 }
