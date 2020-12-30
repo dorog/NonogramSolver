@@ -138,25 +138,73 @@ namespace Solver.Test.SolverEngineTests
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
 
-            for (int i = 0; i < solvedPuzzle.Matrix.GetLength(0); i++)
+            var solvedPuzzleMatrix = solvedPuzzle.Matrix;
+
+            TestResult(matrixSolution, solvedPuzzleMatrix);
+        }
+
+        [TestMethod]
+        public void LionNonogramTest()
+        {
+            Puzzle puzzle = new Puzzle()
             {
-                for (int j = 0; j < solvedPuzzle.Matrix.GetLength(1); j++)
+                Rows = new List<List<uint>>()
                 {
-                    if(solvedPuzzle.Matrix[i, j] == 1)
-                    {
-                        System.Console.Write("H");
-                    }
-                    else if(solvedPuzzle.Matrix[i, j] == -1)
-                    {
-                        System.Console.Write("X");
-                    }
-                    else
-                    {
-                        System.Console.Write("O");
-                    }
-                }
-                System.Console.WriteLine("");
-            }
+                    new List<uint>() { 7 },
+                    new List<uint>() { 9 },
+                    new List<uint>() { 2, 4, 2 },
+                    new List<uint>() { 2, 2 },
+                    new List<uint>() { 2, 1, 1, 2 },
+                    new List<uint>() { 3, 2 },
+                    new List<uint>() { 2, 2 },
+                    new List<uint>() { 3, 3, 1 },
+                    new List<uint>() { 9, 1 },
+                    new List<uint>() { 9, 1 },
+                    new List<uint>() { 11, 2 },
+                    new List<uint>() { 15 },
+                    new List<uint>() { 14 },
+                    new List<uint>() { 2, 3, 2 },
+                    new List<uint>() { 1, 1, 1, 1, 1, 1, 1 },
+                },
+                Columns = new List<List<uint>>()
+                {
+                    new List<uint>() { 4 },
+                    new List<uint>() { 6, 4 },
+                    new List<uint>() { 12, 1 },
+                    new List<uint>() { 2, 1, 6 },
+                    new List<uint>() { 2, 5, 1 },
+                    new List<uint>() { 3, 1, 6 },
+                    new List<uint>() { 3, 7 },
+                    new List<uint>() { 3, 6 },
+                    new List<uint>() { 3, 1, 5, 1 },
+                    new List<uint>() { 2, 6 },
+                    new List<uint>() { 12, 1 },
+                    new List<uint>() { 6, 4 },
+                    new List<uint>() { 4 },
+                    new List<uint>() { 3 },
+                    new List<uint>() { 5 },
+                },
+                Matrix = new int[15, 15]
+            };
+            int[,] matrixSolution = {
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+                { empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty },
+            };
+
+            var solvedPuzzle = SolverEngine.Solve(puzzle);
 
             var solvedPuzzleMatrix = solvedPuzzle.Matrix;
 
