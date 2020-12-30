@@ -22,9 +22,14 @@ namespace Solver.Data
 
         public void SetMatrixRow(int index, int[] row, int delay = 0)
         {
-            for (int i = delay; i < Matrix.GetLength(1) && i < row.Length; i++)
+            if(delay != 0)
             {
-                Matrix[index, i] = row[i];
+                System.Console.WriteLine("Not default: " + delay);
+            }
+
+            for (int i = delay; i < Matrix.GetLength(1) && i < row.Length + delay; i++)
+            {
+                Matrix[index, i] = row[i - delay];
             }
         }
 
@@ -42,9 +47,9 @@ namespace Solver.Data
 
         public void SetMatrixColumn(int index, int[] column, int delay = 0)
         {
-            for (int i = delay; i < Matrix.GetLength(0) && i < column.Length; i++)
+            for (int i = delay; i < Matrix.GetLength(0) && i < column.Length + delay; i++)
             {
-                Matrix[i, index] = column[i];
+                Matrix[i, index] = column[i - delay];
             }
         }
     }
