@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Solver.Engine.Data;
+using System;
 
 namespace Solver.Engine.Rules.Simple.Impl
 {
     public class UnreachableRule : ISimpleRule
     {
-        public int[] Check(int number, int[] fields)
+        public FieldType[] Check(int number, FieldType[] fields)
         {
             int? max = null;
             int? min = null;
 
             for(int i = 0; i < fields.Length; i++)
             {
-                if (fields[i] > 0)
+                if (fields[i] == FieldType.Solid)
                 {
                     max = i;
 
@@ -30,7 +31,7 @@ namespace Solver.Engine.Rules.Simple.Impl
             return fields;
         }
 
-        private int[] Fill(int min, int max, int number, int[] fields)
+        private FieldType[] Fill(int min, int max, int number, FieldType[] fields)
         {
             long maxDistance = number - (max - min);
             if(maxDistance <= 0)
@@ -42,7 +43,7 @@ namespace Solver.Engine.Rules.Simple.Impl
             {
                 if(Math.Abs(i - min) >= maxDistance && Math.Abs(i - max) >= maxDistance && (i < min || max < i))
                 {
-                    fields[i] = -1;
+                    fields[i] = FieldType.White;
                 }
             }
 

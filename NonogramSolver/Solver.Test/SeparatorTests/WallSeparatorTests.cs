@@ -10,11 +10,14 @@ namespace Solver.Test.SeparatorTests
     {
         private readonly WallSeparator wallSeparator = new WallSeparator();
 
+        private readonly FieldType solid = FieldType.Solid;
+        private readonly FieldType unknown = FieldType.Unknown;
+
         [TestMethod]
         public void NoRangeTest()
         {
             List<int> numbers = new List<int> { 2, 3 };
-            int[] fields = new int[] { 0, 1, 0, 1, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, unknown, solid, unknown, unknown };
             Range[] expected = new Range[]
             {
                 null,
@@ -30,7 +33,7 @@ namespace Solver.Test.SeparatorTests
         public void OneRangeFullTest()
         {
             List<int> numbers = new List<int> { 5 };
-            int[] fields = new int[] { 1, 1, 1, 1, 1 };
+            FieldType[] fields = new FieldType[] { solid, solid, solid, solid, solid };
             Range[] expected = new Range[] 
             {
                 new Range(){ Start = 0, End = 4 }
@@ -45,7 +48,7 @@ namespace Solver.Test.SeparatorTests
         public void OneRangeStartTest()
         {
             List<int> numbers = new List<int> { 4 };
-            int[] fields = new int[] { 1, 1, 1, 1, 1 };
+            FieldType[] fields = new FieldType[] { solid, solid, solid, solid, solid };
             Range[] expected = new Range[]
             {
                 new Range(){ Start = 0, End = 4 }
@@ -60,7 +63,7 @@ namespace Solver.Test.SeparatorTests
         public void OneRangeEndTest()
         {
             List<int> numbers = new List<int> { 4 };
-            int[] fields = new int[] { 0, 1, 1, 1, 1 };
+            FieldType[] fields = new FieldType[] { unknown, solid, solid, solid, solid };
             Range[] expected = new Range[]
             {
                 new Range(){ Start = 0, End = 4 }
@@ -75,7 +78,7 @@ namespace Solver.Test.SeparatorTests
         public void TwoRangeBothTest()
         {
             List<int> numbers = new List<int> { 2, 3 };
-            int[] fields = new int[] { 1, 1, 0, 1, 1, 1 };
+            FieldType[] fields = new FieldType[] { solid, solid, unknown, solid, solid, solid };
             Range[] expected = new Range[]
             {
                 new Range(){ Start = 0, End = 2 },
@@ -91,7 +94,7 @@ namespace Solver.Test.SeparatorTests
         public void TwoRangeStartTest()
         {
             List<int> numbers = new List<int> { 2, 3 };
-            int[] fields = new int[] { 1, 1, 0, 0, 1, 0 };
+            FieldType[] fields = new FieldType[] { solid, solid, unknown, unknown, solid, unknown };
             Range[] expected = new Range[]
             {
                 new Range(){ Start = 0, End = 2 },
@@ -107,7 +110,7 @@ namespace Solver.Test.SeparatorTests
         public void TwoRangeEndTest()
         {
             List<int> numbers = new List<int> { 2, 3 };
-            int[] fields = new int[] { 0, 1, 0, 0, 0, 1 };
+            FieldType[] fields = new FieldType[] { unknown, solid, unknown, unknown, unknown, solid };
             Range[] expected = new Range[]
             {
                 null,
@@ -123,7 +126,7 @@ namespace Solver.Test.SeparatorTests
         public void MoreRangeBothTest()
         {
             List<int> numbers = new List<int> { 2, 2, 3 };
-            int[] fields = new int[] { 1, 0, 0, 1, 0, 0, 0, 1 };
+            FieldType[] fields = new FieldType[] { solid, unknown, unknown, solid, unknown, unknown, unknown, solid };
             Range[] expected = new Range[]
             {
                 new Range(){ Start = 0, End = 2 },
@@ -140,7 +143,7 @@ namespace Solver.Test.SeparatorTests
         public void MoreRangeEndTest()
         {
             List<int> numbers = new List<int> { 2, 2, 3 };
-            int[] fields = new int[] { 0, 0, 0, 0, 0, 0, 0, 1 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, unknown, unknown, unknown, unknown, unknown, solid };
             Range[] expected = new Range[]
             {
                 null,
@@ -150,18 +153,6 @@ namespace Solver.Test.SeparatorTests
 
             var results = wallSeparator.Separate(numbers, fields);
 
-            foreach(var result in results)
-            {
-                if(result == null)
-                {
-                    System.Console.WriteLine("Null");
-                }
-                else
-                {
-                    System.Console.WriteLine(result.Start + " - " + result.End);
-                }
-            }
-
             CollectionAssert.AreEqual(expected, results);
         }
 
@@ -169,7 +160,7 @@ namespace Solver.Test.SeparatorTests
         public void MoreRangeStartTest()
         {
             List<int> numbers = new List<int> { 2, 2, 3 };
-            int[] fields = new int[] { 1, 0, 0, 0, 0, 0, 0, 0 };
+            FieldType[] fields = new FieldType[] { solid, unknown, unknown, unknown, unknown, unknown, unknown, unknown };
             Range[] expected = new Range[]
             {
                 new Range(){ Start = 0, End = 2 },

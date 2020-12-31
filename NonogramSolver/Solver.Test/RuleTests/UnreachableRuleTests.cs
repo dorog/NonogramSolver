@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Solver.Engine.Data;
 using Solver.Engine.Rules.Simple.Impl;
 
 namespace Solver.Test.RuleTests
@@ -8,12 +9,16 @@ namespace Solver.Test.RuleTests
     {
         private readonly UnreachableRule unreachableRule = new UnreachableRule();
 
+        private readonly FieldType solid = FieldType.Solid;
+        private readonly FieldType unknown = FieldType.Unknown;
+        private readonly FieldType white = FieldType.White;
+
         [TestMethod]
         public void NoUnreachableMiddleTest()
         {
             int number = 5;
-            int[] fields = new int[] { 0, 1, 1, 1, 0 };
-            int[] expected = new int[] { 0, 1, 1, 1, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, solid, solid, unknown };
+            FieldType[] expected = new FieldType[] { unknown, solid, solid, solid, unknown };
 
             var results = unreachableRule.Check(number, fields);
 
@@ -24,8 +29,8 @@ namespace Solver.Test.RuleTests
         public void NoChangesFullTest()
         {
             int number = 5;
-            int[] fields = new int[] { 1, 1, 1, 1, 1 };
-            int[] expected = new int[] { 1, 1, 1, 1, 1 };
+            FieldType[] fields = new FieldType[] { solid, solid, solid, solid, solid };
+            FieldType[] expected = new FieldType[] { solid, solid, solid, solid, solid };
 
             var results = unreachableRule.Check(number, fields);
 
@@ -36,8 +41,8 @@ namespace Solver.Test.RuleTests
         public void NoUnreachableEndTest()
         {
             int number = 5;
-            int[] fields = new int[] { 0, 0, 1, 1, 1 };
-            int[] expected = new int[] { 0, 0, 1, 1, 1 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, solid };
+            FieldType[] expected = new FieldType[] { unknown, unknown, solid, solid, solid };
 
             var results = unreachableRule.Check(number, fields);
 
@@ -48,8 +53,8 @@ namespace Solver.Test.RuleTests
         public void NoUnreachableStartTest()
         {
             int number = 5;
-            int[] fields = new int[] { 1, 1, 1, 0, 0 };
-            int[] expected = new int[] { 1, 1, 1, 0 ,0  };
+            FieldType[] fields = new FieldType[] { solid, solid, solid, unknown, unknown };
+            FieldType[] expected = new FieldType[] { solid, solid, solid, unknown ,unknown  };
 
             var results = unreachableRule.Check(number, fields);
 
@@ -60,8 +65,8 @@ namespace Solver.Test.RuleTests
         public void UnreachableEndTest()
         {
             int number = 3;
-            int[] fields = new int[] { 0, 1, 1, 0, 0, 0 };
-            int[] expected = new int[] { 0, 1, 1, 0, -1, -1 };
+            FieldType[] fields = new FieldType[] { unknown, solid, solid, unknown, unknown, unknown };
+            FieldType[] expected = new FieldType[] { unknown, solid, solid, unknown, white, white };
 
             var results = unreachableRule.Check(number, fields);
 
@@ -72,8 +77,8 @@ namespace Solver.Test.RuleTests
         public void UnreachableStartTest()
         {
             int number = 3;
-            int[] fields = new int[] { 0, 0, 0, 1, 1, 0 };
-            int[] expected = new int[] { -1, -1, 0, 1, 1, 0 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, unknown, solid, solid, unknown };
+            FieldType[] expected = new FieldType[] { white, white, unknown, solid, solid, unknown };
 
             var results = unreachableRule.Check(number, fields);
 
@@ -84,8 +89,8 @@ namespace Solver.Test.RuleTests
         public void UnreachableStartAndEndTest()
         {
             int number = 3;
-            int[] fields = new int[] { 0, 0, 1, 1, 0, 0 };
-            int[] expected = new int[] { -1, 0, 1, 1, 0, -1 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, unknown, unknown };
+            FieldType[] expected = new FieldType[] { white, unknown, solid, solid, unknown, white };
 
             var results = unreachableRule.Check(number, fields);
 

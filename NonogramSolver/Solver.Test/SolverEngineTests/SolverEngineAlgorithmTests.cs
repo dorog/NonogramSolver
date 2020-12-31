@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solver.Data;
 using Solver.Engine;
+using Solver.Engine.Data;
 using System.Collections.Generic;
 
 namespace Solver.Test.SolverEngineTests
@@ -8,8 +9,8 @@ namespace Solver.Test.SolverEngineTests
     [TestClass]
     public class SolverEngineAlgorithmTests
     {
-        private static readonly int solid = 1;
-        private static readonly int empty = -1;
+        private readonly FieldType solid = FieldType.Solid;
+        private readonly FieldType white = FieldType.White;
 
         [TestMethod]
         public void BirdNonogramTest()
@@ -34,15 +35,15 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 2, 1 },
                     new List<int>() { 2 }
                 },
-                Matrix = new int[6, 6]
+                Matrix = new FieldType[6, 6]
             };
-            int[,] matrixSolution = { 
-                { solid, solid, empty, empty, empty, solid},
-                { empty, solid, empty, solid, solid, solid },
-                { empty, solid, empty, solid, solid, empty },
-                { empty, solid, solid, solid, empty, empty },
-                { empty, solid, solid, solid, solid, empty },
-                { empty, empty, empty, solid, empty, empty},
+            FieldType[,] matrixSolution = { 
+                { solid, solid, white, white, white, solid},
+                { white, solid, white, solid, solid, solid },
+                { white, solid, white, solid, solid, white },
+                { white, solid, solid, solid, white, white },
+                { white, solid, solid, solid, solid, white },
+                { white, white, white, solid, white, white},
             };
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
@@ -73,14 +74,14 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 4 },
                     new List<int>() { 3 },
                 },
-                Matrix = new int[5, 5]
+                Matrix = new FieldType[5, 5]
             };
-            int[,] matrixSolution = {
+            FieldType[,] matrixSolution = {
                 { solid, solid, solid, solid, solid },
                 { solid, solid, solid, solid, solid },
                 { solid, solid, solid, solid, solid },
-                { empty, solid, solid, solid, empty },
-                { empty, empty, solid, empty, empty },
+                { white, solid, solid, solid, white },
+                { white, white, solid, white, white },
             };
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
@@ -121,19 +122,19 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 4 },
                     new List<int>() { 2 },
                 },
-                Matrix = new int[10, 10]
+                Matrix = new FieldType[10, 10]
             };
-            int[,] matrixSolution = {
-                { empty, empty, solid, solid, solid, solid, solid, solid, empty, empty },
-                { empty, solid, solid, solid, solid, solid, solid, solid, solid, empty },
+            FieldType[,] matrixSolution = {
+                { white, white, solid, solid, solid, solid, solid, solid, white, white },
+                { white, solid, solid, solid, solid, solid, solid, solid, solid, white },
                 { solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
                 { solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
-                { empty, solid, solid, solid, solid, solid, solid, solid, solid, empty },
-                { empty, empty, solid, solid, solid, empty, solid, empty, empty, empty },
-                { empty, empty, empty, empty, solid, solid, solid, empty, empty, empty },
-                { empty, empty, empty, empty, solid, empty, empty, empty, empty, empty },
-                { empty, empty, solid, solid, solid, solid, solid, solid, empty, empty },
-                { empty, empty, empty, solid, solid, solid, solid, empty, empty, empty },
+                { white, solid, solid, solid, solid, solid, solid, solid, solid, white },
+                { white, white, solid, solid, solid, white, solid, white, white, white },
+                { white, white, white, white, solid, solid, solid, white, white, white },
+                { white, white, white, white, solid, white, white, white, white, white },
+                { white, white, solid, solid, solid, solid, solid, solid, white, white },
+                { white, white, white, solid, solid, solid, solid, white, white, white },
             };
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
@@ -184,24 +185,24 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 3 },
                     new List<int>() { 5 },
                 },
-                Matrix = new int[15, 15]
+                Matrix = new FieldType[15, 15]
             };
-            int[,] matrixSolution = {
-                { empty, empty, empty, solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, empty, empty },
-                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, empty },
-                { empty, solid, solid, empty, empty, solid, solid, solid, solid, empty, solid, solid, empty, empty, empty },
-                { empty, solid, solid, empty, empty, empty, empty, empty, empty, empty, solid, solid, empty, empty, empty },
-                { empty, solid, solid, empty, empty, solid, empty, empty, solid, empty, solid, solid, empty, empty, empty },
-                { empty, solid, solid, solid, empty, empty, empty, empty, empty, empty, solid, solid, empty, empty, empty },
-                { empty, solid, solid, empty, empty, empty, empty, empty, empty, empty, solid, solid, empty, empty, empty },
-                { empty, solid, solid, solid, empty, empty, empty, empty, empty, solid, solid, solid, empty, empty, solid },
-                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, solid },
-                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, solid },
-                { empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty, solid, solid },
+            FieldType[,] matrixSolution = {
+                { white, white, white, solid, solid, solid, solid, solid, solid, solid, white, white, white, white, white },
+                { white, white, solid, solid, solid, solid, solid, solid, solid, solid, solid, white, white, white, white },
+                { white, solid, solid, white, white, solid, solid, solid, solid, white, solid, solid, white, white, white },
+                { white, solid, solid, white, white, white, white, white, white, white, solid, solid, white, white, white },
+                { white, solid, solid, white, white, solid, white, white, solid, white, solid, solid, white, white, white },
+                { white, solid, solid, solid, white, white, white, white, white, white, solid, solid, white, white, white },
+                { white, solid, solid, white, white, white, white, white, white, white, solid, solid, white, white, white },
+                { white, solid, solid, solid, white, white, white, white, white, solid, solid, solid, white, white, solid },
+                { white, white, solid, solid, solid, solid, solid, solid, solid, solid, solid, white, white, white, solid },
+                { white, white, solid, solid, solid, solid, solid, solid, solid, solid, solid, white, white, white, solid },
+                { white, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, white, solid, solid },
                 { solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
-                { solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty },
-                { solid, solid, empty, empty, empty, solid, solid, solid, empty, empty, empty, solid, solid, empty, empty },
-                { solid, empty, solid, empty, solid, empty, solid, empty, solid, empty, solid, empty, solid, empty, empty },
+                { solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, white },
+                { solid, solid, white, white, white, solid, solid, solid, white, white, white, solid, solid, white, white },
+                { solid, white, solid, white, solid, white, solid, white, solid, white, solid, white, solid, white, white },
             };
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
@@ -252,24 +253,24 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 7 },
                     new List<int>() { 5 }
                 },
-                Matrix = new int[15, 15]
+                Matrix = new FieldType[15, 15]
             };
-            int[,] matrixSolution = {
-                { empty, empty, solid, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, solid, solid, solid, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty },
-                { solid, solid, solid, empty, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty },
-                { solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty },
-                { solid, solid, solid, solid, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty },
-                { solid, empty, empty, empty, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, solid, solid, solid, empty, empty, empty, empty, empty, empty, empty, empty, empty },
-                { empty, empty, empty, solid, solid, solid, empty, empty, solid, solid, solid, solid, solid, empty, empty },
-                { empty, empty, solid, solid, solid, solid, empty, solid, solid, solid, solid, solid, solid, solid, empty },
-                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
-                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
-                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
-                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
-                { empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
-                { empty, empty, empty, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, empty },
+            FieldType[,] matrixSolution = {
+                { white, white, solid, solid, solid, solid, white, white, white, white, white, white, white, white, white },
+                { white, solid, solid, solid, solid, solid, solid, white, white, white, white, white, white, white, white },
+                { solid, solid, solid, white, solid, solid, solid, white, white, white, white, white, white, white, white },
+                { solid, solid, solid, solid, solid, solid, solid, white, white, white, white, white, white, white, white },
+                { solid, solid, solid, solid, solid, solid, solid, white, white, white, white, white, white, white, white },
+                { solid, white, white, white, solid, solid, solid, white, white, white, white, white, white, white, white },
+                { white, white, white, solid, solid, solid, white, white, white, white, white, white, white, white, white },
+                { white, white, white, solid, solid, solid, white, white, solid, solid, solid, solid, solid, white, white },
+                { white, white, solid, solid, solid, solid, white, solid, solid, solid, solid, solid, solid, solid, white },
+                { white, white, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { white, white, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { white, white, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { white, white, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { white, white, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid },
+                { white, white, white, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, solid, white },
             };
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
@@ -279,7 +280,7 @@ namespace Solver.Test.SolverEngineTests
             TestResult(matrixSolution, solvedPuzzleMatrix);
         }
 
-        private void TestResult(int[,] solution, int[,] solved)
+        private void TestResult(FieldType[,] solution, FieldType[,] solved)
         {
             Assert.AreEqual(solution.GetLength(0), solved.GetLength(0), "Diff Lengths: Rows");
             Assert.AreEqual(solution.GetLength(1), solved.GetLength(1), "Diff Lengths: Columns");

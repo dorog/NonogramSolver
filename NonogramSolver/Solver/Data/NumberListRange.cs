@@ -7,7 +7,7 @@ namespace Solver.Engine.Data
         public RangeType RangeType { get; set; }
         public int Index { get; set; }
         public int Delay { get; set; }
-        public int[] Fields { get; set; }
+        public FieldType[] Fields { get; set; }
         public List<int> Numbers { get; set; }
     }
 }

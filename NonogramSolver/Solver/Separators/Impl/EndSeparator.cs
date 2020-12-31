@@ -5,7 +5,7 @@ namespace Solver.Engine.Separators.Impl
 {
     public class EndSeparator : ISeparator
     {
-        public Range[] Separate(List<int> numbers, int[] fields)
+        public Range[] Separate(List<int> numbers, FieldType[] fields)
         {
             Range[] ranges = new Range[numbers.Count];
 
@@ -14,7 +14,7 @@ namespace Solver.Engine.Separators.Impl
 
             for(int i = 0; i < fields.Length; i++)
             {
-                if(fields[i] == -1)
+                if(fields[i] == FieldType.White)
                 {
                     lastWhite = i;
 
@@ -33,8 +33,8 @@ namespace Solver.Engine.Separators.Impl
                 {
                     ranges[^1] = new Range()
                     {
-                        Start = (int)(lastWhiteLocation + 1),
-                        End = (int)fields.Length - 1
+                        Start = lastWhiteLocation + 1,
+                        End = fields.Length - 1
                     };
                 }
             }
@@ -47,7 +47,7 @@ namespace Solver.Engine.Separators.Impl
                     ranges[0] = new Range()
                     {
                         Start = 0,
-                        End = (int)firstWhiteLocation - 1
+                        End = firstWhiteLocation - 1
                     };
                 }
             }
@@ -55,11 +55,11 @@ namespace Solver.Engine.Separators.Impl
             return ranges;
         }
 
-        private bool SolidExists(int min, int max, int[] fields)
+        private bool SolidExists(int min, int max, FieldType[] fields)
         {
             for(int i = min; i < max; i++)
             {
-                if(fields[i] == 1)
+                if(fields[i] == FieldType.Solid)
                 {
                     return true;
                 }

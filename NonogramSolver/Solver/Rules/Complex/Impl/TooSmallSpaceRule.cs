@@ -1,4 +1,5 @@
-﻿using Solver.Engine.Rules.Simple.Impl;
+﻿using Solver.Engine.Data;
+using Solver.Engine.Rules.Simple.Impl;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +9,7 @@ namespace Solver.Engine.Rules.Complex.Impl
     {
         private readonly NotEnoughSpaceRule notEnoughSpaceRule = new NotEnoughSpaceRule();
 
-        public int[] Check(List<int> numbers, int[] fields)
+        public FieldType[] Check(List<int> numbers, FieldType[] fields)
         {
             int smallest = numbers.OrderBy(x => x).First();
 

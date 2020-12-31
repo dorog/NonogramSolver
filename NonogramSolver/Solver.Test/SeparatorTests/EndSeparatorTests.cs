@@ -10,11 +10,15 @@ namespace Solver.Test.SeparatorTests
     {
         private readonly EndSeparator endSeparator = new EndSeparator();
 
+        private readonly FieldType solid = FieldType.Solid;
+        private readonly FieldType unknown = FieldType.Unknown;
+        private readonly FieldType white = FieldType.White;
+
         [TestMethod]
         public void NoWhiteFieldWithOneNumberTest()
         {
             List<int> numbers = new List<int> { 3 };
-            int[] fields = new int[] { 0, 1, 1, 1, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, solid, solid, unknown, unknown };
             Range[] expected = new Range[]
             {
                 null   
@@ -29,7 +33,7 @@ namespace Solver.Test.SeparatorTests
         public void NoWhiteFieldWithMoreNumberTest()
         {
             List<int> numbers = new List<int> { 3, 1 };
-            int[] fields = new int[] { 0, 1, 1, 1, 0, 1 };
+            FieldType[] fields = new FieldType[] { unknown, solid, solid, solid, unknown, solid };
             Range[] expected = new Range[]
             {
                 null,
@@ -45,7 +49,7 @@ namespace Solver.Test.SeparatorTests
         public void WhiteFieldWithOneNumberButWithoutSolidTest()
         {
             List<int> numbers = new List<int> { 3 };
-            int[] fields = new int[] { 0, 0, 0, -1, 0, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, unknown };
             Range[] expected = new Range[]
             {
                 null
@@ -60,7 +64,7 @@ namespace Solver.Test.SeparatorTests
         public void WhiteFieldWithOneNumberWithSolidStartPerfectTest()
         {
             List<int> numbers = new List<int> { 3 };
-            int[] fields = new int[] { 0, 1, 0, -1, 0, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, unknown, white, unknown, unknown, unknown };
             Range[] expected = new Range[]
             {
                 new Range()
@@ -79,7 +83,7 @@ namespace Solver.Test.SeparatorTests
         public void WhiteFieldWithOneNumberWithSolidStartGreaterWithOneTest()
         {
             List<int> numbers = new List<int> { 3 };
-            int[] fields = new int[] { 1, 0, 0, 0, -1, 0, 0, 0 };
+            FieldType[] fields = new FieldType[] { solid, unknown, unknown, unknown, white, unknown, unknown, unknown };
             Range[] expected = new Range[]
             {
                 new Range()
@@ -98,7 +102,7 @@ namespace Solver.Test.SeparatorTests
         public void WhiteFieldWithOneNumberWithSolidStartGreaterWithMoreTest()
         {
             List<int> numbers = new List<int> { 3 };
-            int[] fields = new int[] { 0, 1, 0, 0, 0, -1, 0, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, unknown, unknown, unknown, white, unknown, unknown, unknown };
             Range[] expected = new Range[]
             {
                 null
@@ -113,7 +117,7 @@ namespace Solver.Test.SeparatorTests
         public void WhiteFieldWithOneNumberWithSolidEndPerfectTest()
         {
             List<int> numbers = new List<int> { 3 };
-            int[] fields = new int[] { 0, 0, 0, -1, 0, 0, 1 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, solid };
             Range[] expected = new Range[]
             {
                 new Range()
@@ -132,7 +136,7 @@ namespace Solver.Test.SeparatorTests
         public void WhiteFieldWithOneNumberWithSolidEndGreaterWithOneTest()
         {
             List<int> numbers = new List<int> { 3 };
-            int[] fields = new int[] { 0, 0, 0, -1, 1, 0, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, solid, unknown, unknown, unknown };
             Range[] expected = new Range[]
             {
                 new Range()
@@ -151,7 +155,7 @@ namespace Solver.Test.SeparatorTests
         public void WhiteFieldWithOneNumberWithSolidEndGreaterWithMoreTest()
         {
             List<int> numbers = new List<int> { 3 };
-            int[] fields = new int[] { 0, 0, 0, -1, 0, 1, 0, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, solid, unknown, unknown, unknown };
             Range[] expected = new Range[]
             {
                 null
@@ -166,7 +170,7 @@ namespace Solver.Test.SeparatorTests
         public void WhiteFieldWithTwoNumberTest()
         {
             List<int> numbers = new List<int> { 1, 3 };
-            int[] fields = new int[] { 0, 1, -1, 1, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, white, solid, unknown, unknown };
             Range[] expected = new Range[]
             {
                 new Range(){ Start = 0, End = 1 },

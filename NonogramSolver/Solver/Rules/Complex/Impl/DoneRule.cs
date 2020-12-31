@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using Solver.Engine.Data;
+using System.Collections.Generic;
 
 namespace Solver.Engine.Rules.Complex.Impl
 {
     public class DoneRule : IComplexRule
     {
-        public int[] Check(List<int> numbers, int[] fields)
+        public FieldType[] Check(List<int> numbers, FieldType[] fields)
         {
             List<int> lengths = new List<int>();
 
             int length = 0;
             foreach(var field in fields)
             {
-                if(field > 0)
+                if(field == FieldType.Solid)
                 {
                     length++;
                 }
@@ -38,9 +39,9 @@ namespace Solver.Engine.Rules.Complex.Impl
 
                 for(int i = 0; i < fields.Length; i++)
                 {
-                    if(fields[i] == 0)
+                    if(fields[i] == FieldType.Unknown)
                     {
-                        fields[i] = -1;
+                        fields[i] = FieldType.White;
                     }
                 }
 

@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Solver.Engine.Data;
 using Solver.Engine.Rules.Simple.Impl;
 
 namespace Solver.Test.RuleTests
@@ -8,12 +9,15 @@ namespace Solver.Test.RuleTests
     {
         private readonly MoreThanHalfRule halfOrMore = new MoreThanHalfRule();
 
+        private readonly FieldType solid = FieldType.Solid;
+        private readonly FieldType unknown = FieldType.Unknown;
+
         [TestMethod]
         public void FullTest()
         {
             int number =  5 ;
-            int[] fields = new int[5];
-            int[] expected = new int[] { 1, 1, 1, 1, 1 };
+            FieldType[] fields = new FieldType[5];
+            FieldType[] expected = new FieldType[] { solid, solid, solid, solid, solid };
 
             var results = halfOrMore.Check(number, fields);
 
@@ -24,8 +28,8 @@ namespace Solver.Test.RuleTests
         public void MoreThanHalfTest()
         {
             int number = 3;
-            int[] fields = new int[5];
-            int[] expected = new int[] { 0, 0, 1, 0, 0 };
+            FieldType[] fields = new FieldType[5];
+            FieldType[] expected = new FieldType[] { unknown, unknown, solid, unknown, unknown };
 
             var results = halfOrMore.Check(number, fields);
 
@@ -36,8 +40,8 @@ namespace Solver.Test.RuleTests
         public void HalfTest()
         {
             int number = 3;
-            int[] fields = new int[6];
-            int[] expected = new int[] { 0, 0, 0, 0, 0, 0 };
+            FieldType[] fields = new FieldType[6];
+            FieldType[] expected = new FieldType[] { unknown, unknown, unknown, unknown, unknown, unknown };
 
             var results = halfOrMore.Check(number, fields);
 
@@ -48,8 +52,8 @@ namespace Solver.Test.RuleTests
         public void LessThanHalfTest()
         {
             int number = 2;
-            int[] fields = new int[6];
-            int[] expected = new int[] { 0, 0, 0, 0, 0, 0 };
+            FieldType[] fields = new FieldType[6];
+            FieldType[] expected = new FieldType[] { unknown, unknown, unknown, unknown, unknown, unknown };
 
             var results = halfOrMore.Check(number, fields);
 
@@ -60,8 +64,8 @@ namespace Solver.Test.RuleTests
         public void NotEmpyRowAndMoreThanHalfTest()
         {
             int number = 3;
-            int[] fields = new int[5] { 0, 0, 0, 0, 1 };
-            int[] expected = new int[] { 0, 0, 1, 0, 1 };
+            FieldType[] fields = new FieldType[5] { unknown, unknown, unknown, unknown, solid };
+            FieldType[] expected = new FieldType[] { unknown, unknown, solid, unknown, solid };
 
             var results = halfOrMore.Check(number, fields);
 

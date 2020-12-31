@@ -10,11 +10,14 @@ namespace Solver.Test.SeparatorTests
     {
         private readonly OnlyOneNumberSeparator onlyOneNumberSeparator = new OnlyOneNumberSeparator();
 
+        private readonly FieldType solid = FieldType.Solid;
+        private readonly FieldType unknown = FieldType.Unknown;
+
         [TestMethod]
         public void OneNumberTest()
         {
             List<int> numbers = new List<int> { 3 };
-            int[] fields = new int[] { 0, 1, 1, 1, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, solid, solid, unknown, unknown };
             Range[] expected = new Range[]
             {
                 new Range()
@@ -34,7 +37,7 @@ namespace Solver.Test.SeparatorTests
         public void TwoNumberTest()
         {
             List<int> numbers = new List<int> { 3, 1 };
-            int[] fields = new int[] { 0, 1, 1, 1, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, solid, solid, unknown, unknown };
             Range[] expected = new Range[]
             {
                 null,

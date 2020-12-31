@@ -10,11 +10,14 @@ namespace Solver.Test.SeparatorTests
     {
         private readonly TwoNumberDistanceSeparator twoNumberDistanceSeparator = new TwoNumberDistanceSeparator();
 
+        private readonly FieldType solid = FieldType.Solid;
+        private readonly FieldType unknown = FieldType.Unknown;
+
         [TestMethod]
         public void OneNumberRangeTest()
         {
             List<int> numbers = new List<int> { 3 };
-            int[] fields = new int[] { 0, 1, 1, 1, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, solid, solid, unknown, unknown };
             Range[] expected = new Range[]
             {
                 null
@@ -29,7 +32,7 @@ namespace Solver.Test.SeparatorTests
         public void MoreThanTwoNumberRangeTest()
         {
             List<int> numbers = new List<int> { 1, 1, 1 };
-            int[] fields = new int[] { 0, 1, 0, 1, 0, 1 };
+            FieldType[] fields = new FieldType[] { unknown, solid, unknown, solid, unknown, solid };
             Range[] expected = new Range[]
             {
                 null,
@@ -46,7 +49,7 @@ namespace Solver.Test.SeparatorTests
         public void TwoNumberTwoSolidButTooCloseRangeTest()
         {
             List<int> numbers = new List<int> { 1, 2 };
-            int[] fields = new int[] { 0, 1, 0, 1, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, unknown, solid, unknown, unknown };
             Range[] expected = new Range[]
             {
                 null,
@@ -62,7 +65,7 @@ namespace Solver.Test.SeparatorTests
         public void TwoNumberMoreSolidButTooCloseRangeTest()
         {
             List<int> numbers = new List<int> { 1, 3 };
-            int[] fields = new int[] { 0, 1, 0, 1, 0, 1 };
+            FieldType[] fields = new FieldType[] { unknown, solid, unknown, solid, unknown, solid };
             Range[] expected = new Range[]
             {
                 null,
@@ -78,7 +81,7 @@ namespace Solver.Test.SeparatorTests
         public void TwoNumberTwoSolidAndEnoughSpaceRangeTest()
         {
             List<int> numbers = new List<int> { 1, 1 };
-            int[] fields = new int[] { 0, 1, 0, 0, 1, 0 };
+            FieldType[] fields = new FieldType[] { unknown, solid, unknown, unknown, solid, unknown };
             Range[] expected = new Range[]
             {
                 new Range(){ Start = 0, End = 2 },
@@ -94,7 +97,7 @@ namespace Solver.Test.SeparatorTests
         public void TwoNumberMoreSolidAndEnoughSpaceRangeTest()
         {
             List<int> numbers = new List<int> { 1, 3 };
-            int[] fields = new int[] { 0, 1, 0, 0, 0, 1, 0, 1 };
+            FieldType[] fields = new FieldType[] { unknown, solid, unknown, unknown, unknown, solid, unknown, solid };
             Range[] expected = new Range[]
             {
                 new Range(){ Start = 0, End = 2 },

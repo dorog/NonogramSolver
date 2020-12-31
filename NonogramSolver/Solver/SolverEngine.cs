@@ -108,21 +108,20 @@ namespace Solver.Engine
             foreach (var complexRule in complexRules)
             {
                 ApplyComplexRuleOnThePuzzle(puzzle, complexRule);
-
-                RefreshNumberedRanges(puzzle);
             }
+
+            RefreshNumberedRanges(puzzle);
+            RefreshNumberListRanges(puzzle);
         }
 
         private static void ApplySimpleRules(Puzzle puzzle)
         {
             foreach (var notDoneRange in notDoneRanges)
             {
-                int[] originalFields = CopyFields(notDoneRange.Fields);
+                FieldType[] originalFields = CopyFields(notDoneRange.Fields);
 
-                int ruleIndex = -1;
                 foreach (var simpleRule in simpleRules)
                 {
-                    ruleIndex++;
                     var result = simpleRule.Check(notDoneRange.Number, notDoneRange.Fields);
                     if (IsChanged(originalFields, result))
                     {
@@ -144,9 +143,9 @@ namespace Solver.Engine
             }
         }
 
-        private static int[] CopyFields(int[] fields)
+        private static FieldType[] CopyFields(FieldType[] fields)
         {
-            int[] copy = new int[fields.Length];
+            FieldType[] copy = new FieldType[fields.Length];
             for(int i = 0; i < fields.Length; i++)
             {
                 copy[i] = fields[i];
@@ -155,7 +154,7 @@ namespace Solver.Engine
             return copy;
         }
 
-        private static bool IsChanged(int[] original, int[] result)
+        private static bool IsChanged(FieldType[] original, FieldType[] result)
         {
             for (int i = 0; i < original.Length; i++)
             {
@@ -172,7 +171,7 @@ namespace Solver.Engine
         {
             foreach(var numberedRange in notDoneRanges)
             {
-                int[] fields = numberedRange.RangeType == RangeType.Column ? puzzle.GetMatrixColumn(numberedRange.Index) : puzzle.GetMatrixRow(numberedRange.Index);
+                FieldType[] fields = numberedRange.RangeType == RangeType.Column ? puzzle.GetMatrixColumn(numberedRange.Index) : puzzle.GetMatrixRow(numberedRange.Index);
 
                 for(int i = 0; i < numberedRange.Fields.Length; i++)
                 {
@@ -185,7 +184,7 @@ namespace Solver.Engine
         {
             foreach (var numberListRange in numberListRanges)
             {
-                int[] fields = numberListRange.RangeType == RangeType.Column ? puzzle.GetMatrixColumn(numberListRange.Index) : puzzle.GetMatrixRow(numberListRange.Index);
+                FieldType[] fields = numberListRange.RangeType == RangeType.Column ? puzzle.GetMatrixColumn(numberListRange.Index) : puzzle.GetMatrixRow(numberListRange.Index);
 
                 for (int i = 0; i < numberListRange.Fields.Length; i++)
                 {
@@ -199,18 +198,18 @@ namespace Solver.Engine
             foreach(var numberedRange in notDoneRanges)
             {
                 int minPosition = 0;
-                while(minPosition < numberedRange.Fields.Length && numberedRange.Fields[minPosition] == -1)
+                while(minPosition < numberedRange.Fields.Length && numberedRange.Fields[minPosition] == FieldType.White)
                 {
                     minPosition++;
                 }
 
                 int maxPosition = numberedRange.Fields.Length - 1;
-                while (maxPosition >= 0 && numberedRange.Fields[maxPosition] == -1)
+                while (maxPosition >= 0 && numberedRange.Fields[maxPosition] == FieldType.White)
                 {
                     maxPosition--;
                 }
 
-                int[] cutFields = new int[maxPosition - minPosition + 1];
+                FieldType[] cutFields = new FieldType[maxPosition - minPosition + 1];
                 for(int i = minPosition; i <= maxPosition; i++)
                 {
                     cutFields[i - minPosition] = numberedRange.Fields[i];
@@ -226,18 +225,18 @@ namespace Solver.Engine
             foreach (var numberListRange in numberListRanges)
             {
                 int minPosition = 0;
-                while (minPosition < numberListRange.Fields.Length && numberListRange.Fields[minPosition] == -1)
+                while (minPosition < numberListRange.Fields.Length && numberListRange.Fields[minPosition] == FieldType.White)
                 {
                     minPosition++;
                 }
 
                 int maxPosition = numberListRange.Fields.Length - 1;
-                while (maxPosition >= 0 && numberListRange.Fields[maxPosition] == -1)
+                while (maxPosition >= 0 && numberListRange.Fields[maxPosition] == FieldType.White)
                 {
                     maxPosition--;
                 }
 
-                int[] cutFields = new int[maxPosition - minPosition + 1];
+                FieldType[] cutFields = new FieldType[maxPosition - minPosition + 1];
                 for (int i = minPosition; i <= maxPosition; i++)
                 {
                     cutFields[i - minPosition] = numberListRange.Fields[i];
@@ -256,7 +255,7 @@ namespace Solver.Engine
             int index = 0;
             foreach(var numberListRange in numberListRanges)
             {
-                foreach(var separator in separators)
+                foreach (var separator in separators)
                 {
                     Range[] ranges = separator.Separate(numberListRange.Numbers, numberListRange.Fields);
 
@@ -332,9 +331,9 @@ namespace Solver.Engine
             notDoneRanges.RemoveAll(x => x.IsDone());
         }
 
-        private static int[] GetNumberedRangeFields(NumberListRange numberListRange, Range range)
+        private static FieldType[] GetNumberedRangeFields(NumberListRange numberListRange, Range range)
         {
-            int[] fields = new int[range.End - range.Start + 1];
+            FieldType[] fields = new FieldType[range.End - range.Start + 1];
 
             for(int i = 0; i < fields.Length; i++)
             {
@@ -364,15 +363,15 @@ namespace Solver.Engine
         {
             for (int i = 0; i < puzzle.Matrix.GetLength(0); i++)
             {
-                int[] actualRow = puzzle.GetMatrixRow(i);
-                int[] calculatedRow = complexRule.Check(puzzle.Rows[i], actualRow);
+                FieldType[] actualRow = puzzle.GetMatrixRow(i);
+                FieldType[] calculatedRow = complexRule.Check(puzzle.Rows[i], actualRow);
                 puzzle.SetMatrixRow(i, calculatedRow);
             }
 
             for (int i = 0; i < puzzle.Matrix.GetLength(1); i++)
             {
-                int[] actualColumn = puzzle.GetMatrixColumn(i);
-                int[] calculatedRow = complexRule.Check(puzzle.Columns[i], actualColumn);
+                FieldType[] actualColumn = puzzle.GetMatrixColumn(i);
+                FieldType[] calculatedRow = complexRule.Check(puzzle.Columns[i], actualColumn);
                 puzzle.SetMatrixColumn(i, calculatedRow);
             }
         }

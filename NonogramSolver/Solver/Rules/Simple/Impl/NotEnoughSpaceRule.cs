@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Solver.Engine.Data;
+using System.Collections.Generic;
 
 namespace Solver.Engine.Rules.Simple.Impl
 {
     public class NotEnoughSpaceRule : ISimpleRule
     {
-        public int[] Check(int number, int[] fields)
+        public FieldType[] Check(int number, FieldType[] fields)
         {
             List<int> whiteFieldPositions = new List<int>()
             {
@@ -13,7 +14,7 @@ namespace Solver.Engine.Rules.Simple.Impl
 
             for(int i = 0; i < fields.Length; i++)
             {
-                if(fields[i] == -1)
+                if(fields[i] == FieldType.White)
                 {
                     whiteFieldPositions.Add(i);
                 }
@@ -26,7 +27,7 @@ namespace Solver.Engine.Rules.Simple.Impl
                 {
                     for(int j = whiteFieldPositions[i - 1] + 1; j < whiteFieldPositions[i]; j++)
                     {
-                        fields[j] = -1;
+                        fields[j] = FieldType.White;
                     }
                 }
             }

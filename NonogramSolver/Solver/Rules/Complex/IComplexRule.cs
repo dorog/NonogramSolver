@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Solver.Engine.Data;
+using System.Collections.Generic;
 
 namespace Solver.Engine.Rules
 {
     public interface IComplexRule
     {
-        int[] Check(List<int> numbers, int[] fields);
+        FieldType[] Check(List<int> numbers, FieldType[] fields);
     }
 }

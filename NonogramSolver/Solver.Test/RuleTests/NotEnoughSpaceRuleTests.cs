@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Solver.Engine.Data;
 using Solver.Engine.Rules.Simple.Impl;
 
 namespace Solver.Test.RuleTests
@@ -8,12 +9,16 @@ namespace Solver.Test.RuleTests
     {
         private readonly NotEnoughSpaceRule notEnoughSpaceRule = new NotEnoughSpaceRule();
 
+        private readonly FieldType solid = FieldType.Solid;
+        private readonly FieldType unknown = FieldType.Unknown;
+        private readonly FieldType white = FieldType.White;
+
         [TestMethod]
         public void NoLittlePlaceTest()
         {
             int number = 1;
-            int[] fields = new int[] { 0, -1, 0, 0, -1, 0 };
-            int[] expected = new int[] { 0, -1, 0, 0, -1, 0 };
+            FieldType[] fields = new FieldType[] { unknown, white, unknown, unknown, white, unknown };
+            FieldType[] expected = new FieldType[] { unknown, white, unknown, unknown, white, unknown };
 
             var results = notEnoughSpaceRule.Check(number, fields);
 
@@ -24,8 +29,8 @@ namespace Solver.Test.RuleTests
         public void StartLittlePlaceTest()
         {
             int number = 2;
-            int[] fields = new int[] { 0, -1, 0, 0, -1, 0, 0 };
-            int[] expected = new int[] { -1, -1, 0, 0, -1, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, white, unknown, unknown, white, unknown, unknown };
+            FieldType[] expected = new FieldType[] { white, white, unknown, unknown, white, unknown, unknown };
 
             var results = notEnoughSpaceRule.Check(number, fields);
 
@@ -36,8 +41,8 @@ namespace Solver.Test.RuleTests
         public void EndLittlePlaceTest()
         {
             int number = 3;
-            int[] fields = new int[] { 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0 };
-            int[] expected = new int[] { 0, 0, 0, -1, 0, 0, 0, 0, -1, -1, -1 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, unknown, unknown, white, unknown, unknown };
+            FieldType[] expected = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, unknown, unknown, white, white, white };
 
             var results = notEnoughSpaceRule.Check(number, fields);
 
@@ -48,8 +53,8 @@ namespace Solver.Test.RuleTests
         public void MiddleLittlePlaceTest()
         {
             int number = 2;
-            int[] fields = new int[] { 0, 0, 0, -1, 0, -1, 0, 0 };
-            int[] expected = new int[] { 0, 0, 0, -1, -1, -1, 0, 0 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, white, unknown, unknown };
+            FieldType[] expected = new FieldType[] { unknown, unknown, unknown, white, white, white, unknown, unknown };
 
             var results = notEnoughSpaceRule.Check(number, fields);
 
@@ -60,8 +65,8 @@ namespace Solver.Test.RuleTests
         public void AllLittlePlaceTest()
         {
             int number = 5;
-            int[] fields = new int[] { 0, 0, 0, -1, 0, -1, 1, 1, 1, 1, 1, -1, 0, 0 };
-            int[] expected = new int[] { -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, - 1, -1, -1 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, white, solid, solid, solid, solid, solid, white, unknown, unknown };
+            FieldType[] expected = new FieldType[] { white, white, white, white, white, white, solid, solid, solid, solid, solid, white, white, white };
 
             var results = notEnoughSpaceRule.Check(number, fields);
 

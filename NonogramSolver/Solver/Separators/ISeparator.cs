@@ -5,6 +5,6 @@ namespace Solver.Engine.Separators
 {
     public interface ISeparator
     {
-        Range[] Separate(List<int> numbers, int[] fields);
+        Range[] Separate(List<int> numbers, FieldType[] fields);
     }
 }

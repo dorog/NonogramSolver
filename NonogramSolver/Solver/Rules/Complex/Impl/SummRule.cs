@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Solver.Engine.Data;
+using System.Collections.Generic;
 
 namespace Solver.Engine.Rules.Complex.Impl
 {
     public class SummRule : IComplexRule
     {
-        public int[] Check(List<int> numbers, int[] fields)
+        public FieldType[] Check(List<int> numbers, FieldType[] fields)
         {
             long summ = numbers.Count - 1;
             foreach(var number in numbers)
@@ -20,19 +21,19 @@ namespace Solver.Engine.Rules.Complex.Impl
             return fields;
         }
 
-        private int[] Fill(List<int> numbers, int[] fields)
+        private FieldType[] Fill(List<int> numbers, FieldType[] fields)
         {
             int index = 0;
             foreach(var number in numbers)
             {
                 for(int i = 0;  i < number; i++)
                 {
-                    fields[index] = 1;
+                    fields[index] = FieldType.Solid;
                     index++;
                 }
                 if(index != fields.Length)
                 {
-                    fields[index] = -1;
+                    fields[index] = FieldType.White;
                     index++;
 
                 }

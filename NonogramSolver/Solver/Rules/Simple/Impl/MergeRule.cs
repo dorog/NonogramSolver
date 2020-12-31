@@ -1,16 +1,17 @@
-﻿
+﻿using Solver.Engine.Data;
+
 namespace Solver.Engine.Rules.Simple.Impl
 {
     public class MergeRule : ISimpleRule
     {
-        public int[] Check(int number, int[] fields)
+        public FieldType[] Check(int number, FieldType[] fields)
         {
             int? min = null;
             int? max = null;
 
             for (int i = 0; i < fields.Length; i++)
             {
-                if (fields[i] > 0)
+                if (fields[i] == FieldType.Solid)
                 {
                     max = i;
 
@@ -29,11 +30,11 @@ namespace Solver.Engine.Rules.Simple.Impl
             return fields;
         }
 
-        private int[] Fill(int min, int max, int[] fields)
+        private FieldType[] Fill(int min, int max, FieldType[] fields)
         {
             for(int i = min; i <= max; i++)
             {
-                fields[i] = 1;
+                fields[i] = FieldType.Solid;
             }
 
             return fields;

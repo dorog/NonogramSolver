@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Solver.Engine.Data;
 using Solver.Engine.Rules.Complex.Impl;
 using System.Collections.Generic;
 
@@ -9,12 +10,16 @@ namespace Solver.Test.RuleTests
     {
         private readonly DoneRule doneRule = new DoneRule();
 
+        private readonly FieldType solid = FieldType.Solid;
+        private readonly FieldType unknown = FieldType.Unknown;
+        private readonly FieldType white = FieldType.White;
+
         [TestMethod]
         public void OneAndNoEdgeTest()
         {
             List<int> numbers = new List<int> { 5 };
-            int[] fields = new int[] { 1, 1, 1, 1, 1 };
-            int[] expected = new int[] { 1, 1, 1, 1, 1 };
+            FieldType[] fields = new FieldType[] { solid, solid, solid, solid, solid };
+            FieldType[] expected = new FieldType[] { solid, solid, solid, solid, solid };
 
             var results = doneRule.Check(numbers, fields);
 
@@ -25,8 +30,8 @@ namespace Solver.Test.RuleTests
         public void OneAndStartEdgeTest()
         {
             List<int> numbers = new List<int> { 5 };
-            int[] fields = new int[] { 0, 1, 1, 1, 1, 1 };
-            int[] expected = new int[] { -1, 1, 1, 1, 1, 1 };
+            FieldType[] fields = new FieldType[] { white, solid, solid, solid, solid, solid };
+            FieldType[] expected = new FieldType[] { white, solid, solid, solid, solid, solid };
 
             var results = doneRule.Check(numbers, fields);
 
@@ -37,8 +42,8 @@ namespace Solver.Test.RuleTests
         public void OneAndEndEdgeTest()
         {
             List<int> numbers = new List<int> { 5 };
-            int[] fields = new int[] { 1, 1, 1, 1, 1, 0 };
-            int[] expected = new int[] { 1, 1, 1, 1, 1, -1 };
+            FieldType[] fields = new FieldType[] { solid, solid, solid, solid, solid, unknown };
+            FieldType[] expected = new FieldType[] { solid, solid, solid, solid, solid, white };
 
             var results = doneRule.Check(numbers, fields);
 
@@ -49,8 +54,8 @@ namespace Solver.Test.RuleTests
         public void OneAndDoubleEdgeTest()
         {
             List<int> numbers = new List<int> { 5 };
-            int[] fields = new int[] { 0, 1, 1, 1, 1, 1, 0 };
-            int[] expected = new int[] { -1, 1, 1, 1, 1, 1, -1 };
+            FieldType[] fields = new FieldType[] { unknown, solid, solid, solid, solid, solid, unknown };
+            FieldType[] expected = new FieldType[] { white, solid, solid, solid, solid, solid, white };
 
             var results = doneRule.Check(numbers, fields);
 
@@ -61,8 +66,8 @@ namespace Solver.Test.RuleTests
         public void MoreAndMiddleTest()
         {
             List<int> numbers = new List<int> { 2, 2 };
-            int[] fields = new int[] { 1, 1, 0, 1, 1 };
-            int[] expected = new int[] { 1, 1, -1, 1, 1 };
+            FieldType[] fields = new FieldType[] { solid, solid, unknown, solid, solid };
+            FieldType[] expected = new FieldType[] { solid, solid, white, solid, solid };
 
             var results = doneRule.Check(numbers, fields);
 
@@ -73,8 +78,8 @@ namespace Solver.Test.RuleTests
         public void MoreAndAllTest()
         {
             List<int> numbers = new List<int> { 2, 2 };
-            int[] fields = new int[] { 0, 0, 1, 1, 0, 1, 1, 0 };
-            int[] expected = new int[] { -1, -1, 1, 1, -1, 1, 1, -1 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, solid, unknown };
+            FieldType[] expected = new FieldType[] { white, white, solid, solid, white, solid, solid, white };
 
             var results = doneRule.Check(numbers, fields);
 
@@ -85,8 +90,8 @@ namespace Solver.Test.RuleTests
         public void NotMatchStartTest()
         {
             List<int> numbers = new List<int> { 3, 2 };
-            int[] fields = new int[] { 0, 0, 1, 1, 0, 1, 1, 0 };
-            int[] expected = new int[] { 0, 0, 1, 1, 0, 1, 1, 0 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, solid, unknown };
+            FieldType[] expected = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, solid, unknown };
 
             var results = doneRule.Check(numbers, fields);
 
@@ -97,8 +102,8 @@ namespace Solver.Test.RuleTests
         public void NotMatchEndTest()
         {
             List<int> numbers = new List<int> { 2, 3 };
-            int[] fields = new int[] { 0, 0, 1, 1, 0, 1, 1, 0 };
-            int[] expected = new int[] { 0, 0, 1, 1, 0, 1, 1, 0 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, solid, unknown };
+            FieldType[] expected = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, solid, unknown };
 
             var results = doneRule.Check(numbers, fields);
 
@@ -109,8 +114,8 @@ namespace Solver.Test.RuleTests
         public void NotMatchMiddleTest()
         {
             List<int> numbers = new List<int> { 2, 1, 3 };
-            int[] fields = new int[] { 0, 0, 1, 1, 0, 1, 0, 1, 1, 0 };
-            int[] expected = new int[] { 0, 0, 1, 1, 0, 1, 0, 1, 1, 0 };
+            FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, unknown, solid, solid, unknown };
+            FieldType[] expected = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, unknown, solid, solid, unknown };
 
             var results = doneRule.Check(numbers, fields);
 

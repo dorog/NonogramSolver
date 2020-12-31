@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Solver.Engine.Data;
+using System.Collections.Generic;
 
 namespace Solver.Data
 {
@@ -6,11 +7,11 @@ namespace Solver.Data
     {
         public List<List<int>> Columns { get; set; }
         public List<List<int>> Rows { get; set; }
-        public int[,] Matrix { get; set; }
+        public FieldType[,] Matrix { get; set; }
 
-        public int[] GetMatrixRow(int index)
+        public FieldType[] GetMatrixRow(int index)
         {
-            int[] row = new int[Matrix.GetLength(1)];
+            FieldType[] row = new FieldType[Matrix.GetLength(1)];
 
             for(int i = 0; i < Matrix.GetLength(0); i++)
             {
@@ -20,7 +21,7 @@ namespace Solver.Data
             return row;
         }
 
-        public void SetMatrixRow(int index, int[] row, int delay = 0)
+        public void SetMatrixRow(int index, FieldType[] row, int delay = 0)
         {
             for (int i = delay; i < Matrix.GetLength(1) && i < row.Length + delay; i++)
             {
@@ -28,9 +29,9 @@ namespace Solver.Data
             }
         }
 
-        public int[] GetMatrixColumn(int index)
+        public FieldType[] GetMatrixColumn(int index)
         {
-            int[] column = new int[Matrix.GetLength(0)];
+            FieldType[] column = new FieldType[Matrix.GetLength(0)];
 
             for (int i = 0; i < Matrix.GetLength(1); i++)
             {
@@ -40,7 +41,7 @@ namespace Solver.Data
             return column;
         }
 
-        public void SetMatrixColumn(int index, int[] column, int delay = 0)
+        public void SetMatrixColumn(int index, FieldType[] column, int delay = 0)
         {
             for (int i = delay; i < Matrix.GetLength(0) && i < column.Length + delay; i++)
             {

@@ -7,12 +7,12 @@ namespace Solver.Engine.Data
         public RangeType RangeType { get; set; }
         public int Index { get; set; }
         public int Delay { get; set; }
-        public int[] Fields { get; set; }
+        public FieldType[] Fields { get; set; }
         public int Number { get; set; }
 
         public bool IsDone()
         {
-            return !Fields.Any(x => x == 0);
+            return !Fields.Any(x => x == FieldType.Unknown);
         }
     }
 }
