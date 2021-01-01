@@ -1,4 +1,6 @@
 ﻿using Solver.Engine.Data;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Solver.Engine.Rules.Simple.Impl
 {
@@ -6,48 +8,55 @@ namespace Solver.Engine.Rules.Simple.Impl
     {
         public FieldType[] Apply(int number, FieldType[] fields)
         {
-            if(fields[0] == FieldType.Solid)
-            {
-                for(int i = 0; i < number; i++)
-                {
-                    fields[i] = FieldType.Solid;
-                }
+            List<FieldType> extendedFields = CreateExtendedFields(fields);
 
-                return fields;
-            }
-            else if(fields[^1] == FieldType.Solid)
+            Range range = FindWalledSolidRange(extendedFields, number);
+
+            if(range != null)
             {
-                int lastFieldIndex = fields.Length - 1;
-                for (int i = 0; i < number; i++)
-                {
-                    fields[lastFieldIndex - i] = FieldType.Solid;
-                }
+                Fill(range, fields);
             }
-            else
+
+            return fields;
+        }
+
+        private List<FieldType> CreateExtendedFields(FieldType[] fields)
+        {
+            List<FieldType> extendedFields = new List<FieldType>();
+
+            extendedFields.Add(FieldType.White);
+            extendedFields.AddRange(fields.ToList());
+            extendedFields.Add(FieldType.White);
+
+            return extendedFields;
+        }
+
+        private Range FindWalledSolidRange(List<FieldType> extendedFields, int number)
+        {
+            for(int i = 1; i < extendedFields.Count - 1; i++)
             {
-                for(int i = 1; i < fields.Length - 1; i++)
+                if (extendedFields[i] == FieldType.Solid)
                 {
-                    if(fields[i] == FieldType.Solid)
+                    if (extendedFields[i - 1] == FieldType.White)
                     {
-                        if (fields[i - 1] == FieldType.White)
-                        {
-                            for(int j = 0; j < number; j++)
-                            {
-                                fields[i + j] = FieldType.Solid;
-                            }
-                        }
-                        else if(fields[i + 1] == FieldType.White)
-                        {
-                            for (int j = 0; j < number; j++)
-                            {
-                                fields[i - j] = FieldType.Solid;
-                            }
-                        }
+                        return new Range() { Start = i - 1, End = i - 1 + (number - 1)};
+                    }
+                    else if (extendedFields[i + 1] == FieldType.White)
+                    {
+                        return new Range() { Start = i - 1 - (number - 1), End = i - 1};
                     }
                 }
             }
 
-            return fields;
+            return null;
+        }
+
+        private void Fill(Range range, FieldType[] fields)
+        {
+            for(int i = range.Start; i <= range.End; i++)
+            {
+                fields[i] = FieldType.Solid;
+            }
         }
     }
 }
