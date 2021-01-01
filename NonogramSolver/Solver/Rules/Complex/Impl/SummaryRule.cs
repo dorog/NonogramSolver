@@ -3,25 +3,32 @@ using System.Collections.Generic;
 
 namespace Solver.Engine.Rules.Complex.Impl
 {
-    public class SummRule : IComplexRule
+    public class SummaryRule : IComplexRule
     {
         public FieldType[] Apply(List<int> numbers, FieldType[] fields)
         {
-            long summ = numbers.Count - 1;
-            foreach(var number in numbers)
-            {
-                summ += number;
-            }
+            int summary = CalculateNumbersSumm(numbers);
 
-            if(summ == fields.Length)
+            if (summary == fields.Length)
             {
-                return Fill(numbers, fields);
+                Fill(numbers, fields);
             }
 
             return fields;
         }
 
-        private FieldType[] Fill(List<int> numbers, FieldType[] fields)
+        private int CalculateNumbersSumm(List<int> numbers)
+        {
+            int summary = numbers.Count - 1;
+            foreach (var number in numbers)
+            {
+                summary += number;
+            }
+
+            return summary;
+        }
+
+        private void Fill(List<int> numbers, FieldType[] fields)
         {
             int index = 0;
             foreach(var number in numbers)
@@ -35,11 +42,8 @@ namespace Solver.Engine.Rules.Complex.Impl
                 {
                     fields[index] = FieldType.White;
                     index++;
-
                 }
             }
-
-            return fields;
         }
     }
 }

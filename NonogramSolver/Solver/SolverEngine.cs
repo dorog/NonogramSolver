@@ -52,7 +52,7 @@ namespace Solver.Engine
 
             CreateNumberListRanges(puzzle);
 
-            ApplyComplexRuleOnThePuzzle(puzzle, new SummRule());
+            ApplyComplexRuleOnThePuzzle(puzzle, new SummaryRule());
 
             int maxStep = puzzle.Rows.Count * puzzle.Columns.Count;
             int actualStep = 0;

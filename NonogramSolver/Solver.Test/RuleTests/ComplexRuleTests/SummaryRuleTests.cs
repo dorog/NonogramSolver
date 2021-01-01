@@ -6,9 +6,9 @@ using System.Collections.Generic;
 namespace Solver.Test.RuleTests.ComplexRuleTests
 {
     [TestClass]
-    public class SummRuleTests
+    public class SummaryRuleTests
     {
-        private readonly SummRule summRule = new SummRule();
+        private readonly SummaryRule summRule = new SummaryRule();
 
         private readonly FieldType solid = FieldType.Solid;
         private readonly FieldType white = FieldType.White;
