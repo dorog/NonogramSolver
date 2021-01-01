@@ -4,7 +4,7 @@ namespace Solver.Engine.Data
 {
     public class NumberedRange
     {
-        public RangeType RangeType { get; set; }
+        public Type RangeType { get; set; }
         public int Index { get; set; }
         public int Delay { get; set; }
         public FieldType[] Fields { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Solver.Engine.Data;
+using Solver.Engine.Rules;
 using System.Collections.Generic;
 
 namespace Solver.Data
@@ -33,7 +34,7 @@ namespace Solver.Data
         {
             PuzzleLine puzzleLine = new PuzzleLine()
             {
-                Type = RangeType.Row,
+                Type = Type.Row,
                 Index = index,
                 Numbers = Rows[index],
                 Fields = Matrix.GetMatrixRow(index)
@@ -58,7 +59,7 @@ namespace Solver.Data
         {
             PuzzleLine puzzleLine = new PuzzleLine()
             {
-                Type = RangeType.Column,
+                Type = Type.Column,
                 Index = index,
                 Numbers = Columns[index],
                 Fields = Matrix.GetMatrixColumn(index)
@@ -82,5 +83,22 @@ namespace Solver.Data
 
             return true;
         }
+
+        public void ApplyComplexRule(IComplexRule complexRule)
+        {
+            foreach (var row in GetRowLines())
+            {
+                var calculatedRow = complexRule.Apply(row.Numbers, row.Fields);
+                Matrix.SetMatrixRow(row.Index, calculatedRow);
+            }
+
+            foreach (var column in GetColumnLines())
+            {
+                var calculatedRow = complexRule.Apply(column.Numbers, column.Fields);
+                Matrix.SetMatrixColumn(column.Index, calculatedRow);
+            }
+        }
+
+
     }
 }

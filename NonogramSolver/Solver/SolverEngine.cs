@@ -53,7 +53,7 @@ namespace Solver.Engine
 
             CreateNumberListRanges(puzzle);
 
-            ApplyComplexRuleOnThePuzzle(puzzle, new SummaryRule());
+            puzzle.ApplyComplexRule(new SummaryRule());
 
             int maxStep = puzzle.Rows.Count * puzzle.Columns.Count;
             int actualStep = 0;
@@ -83,7 +83,7 @@ namespace Solver.Engine
             {
                 numberListRanges.Add(new NumberListRange()
                 {
-                    RangeType = RangeType.Row,
+                    RangeType = Type.Row,
                     Index = row.Index,
                     Delay = 0,
                     Fields = row.Fields,
@@ -95,7 +95,7 @@ namespace Solver.Engine
             {
                 numberListRanges.Add(new NumberListRange()
                 {
-                    RangeType = RangeType.Column,
+                    RangeType = Type.Column,
                     Index = column.Index,
                     Delay = 0,
                     Fields = column.Fields,
@@ -108,7 +108,7 @@ namespace Solver.Engine
         {
             foreach (var complexRule in complexRules)
             {
-                ApplyComplexRuleOnThePuzzle(puzzle, complexRule);
+                puzzle.ApplyComplexRule(complexRule);
             }
 
             RefreshNumberedRanges(puzzle);
@@ -124,11 +124,12 @@ namespace Solver.Engine
                 foreach (var simpleRule in simpleRules)
                 {
                     var result = simpleRule.Apply(notDoneRange.Number, notDoneRange.Fields);
+
                     if (IsChanged(originalFields, result))
                     {
                         notDoneRange.Fields = result;
 
-                        if (notDoneRange.RangeType == RangeType.Column)
+                        if (notDoneRange.RangeType == Type.Column)
                         {
                             puzzle.Matrix.SetMatrixColumn(notDoneRange.Index, notDoneRange.Fields, notDoneRange.Delay);
                         }
@@ -172,7 +173,7 @@ namespace Solver.Engine
         {
             foreach(var numberedRange in notDoneRanges)
             {
-                FieldType[] fields = numberedRange.RangeType == RangeType.Column ? puzzle.Matrix.GetMatrixColumn(numberedRange.Index) : puzzle.Matrix.GetMatrixRow(numberedRange.Index);
+                FieldType[] fields = numberedRange.RangeType == Type.Column ? puzzle.Matrix.GetMatrixColumn(numberedRange.Index) : puzzle.Matrix.GetMatrixRow(numberedRange.Index);
 
                 for(int i = 0; i < numberedRange.Fields.Length; i++)
                 {
@@ -185,7 +186,7 @@ namespace Solver.Engine
         {
             foreach (var numberListRange in numberListRanges)
             {
-                FieldType[] fields = numberListRange.RangeType == RangeType.Column ? puzzle.Matrix.GetMatrixColumn(numberListRange.Index) : puzzle.Matrix.GetMatrixRow(numberListRange.Index);
+                FieldType[] fields = numberListRange.RangeType == Type.Column ? puzzle.Matrix.GetMatrixColumn(numberListRange.Index) : puzzle.Matrix.GetMatrixRow(numberListRange.Index);
 
                 for (int i = 0; i < numberListRange.Fields.Length; i++)
                 {
@@ -342,21 +343,6 @@ namespace Solver.Engine
             }
 
             return fields;
-        }
-
-        private static void ApplyComplexRuleOnThePuzzle(Puzzle puzzle, IComplexRule complexRule)
-        {
-            foreach(var row in puzzle.GetRowLines())
-            {
-                var calculatedRow = complexRule.Apply(row.Numbers, row.Fields);
-                puzzle.Matrix.SetMatrixRow(row.Index, calculatedRow);
-            }
-
-            foreach (var column in puzzle.GetColumnLines())
-            {
-                var calculatedRow = complexRule.Apply(column.Numbers, column.Fields);
-                puzzle.Matrix.SetMatrixColumn(column.Index, calculatedRow);
-            }
         }
     }
 }

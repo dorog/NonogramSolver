@@ -1,7 +1,7 @@
 ﻿
 namespace Solver.Engine.Data
 {
-    public enum RangeType
+    public enum Type
     {
         Column, Row
     }
