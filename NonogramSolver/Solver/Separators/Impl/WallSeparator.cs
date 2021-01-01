@@ -9,19 +9,21 @@ namespace Solver.Engine.Separators.Impl
         {
             Range[] ranges = new Range[numbers.Count];
 
-            if(numbers.Count >= 1 && fields[0] == FieldType.Solid)
+            if(numbers.Count > 0 && fields[0] == FieldType.Solid)
             {
+                int extraWhiteField = (fields.Length == numbers[0] ? 1 : 0);
                 ranges[0] = new Range()
                 {
                     Start = 0,
-                    End = (numbers[0] - (fields.Length == numbers[0] ? 1 : 0))
+                    End = (numbers[0] - extraWhiteField)
                 };
             }
-            if(numbers.Count >= 1 && fields[^1] == FieldType.Solid)
+            if(numbers.Count > 0 && fields[^1] == FieldType.Solid)
             {
+                int extraWhiteField = (fields.Length == numbers[^1] ? 0 : 1);
                 ranges[numbers.Count - 1] = new Range()
                 {
-                    Start = (fields.Length - numbers[^1] - (fields.Length == numbers[^1] ? 0 : 1)),
+                    Start = (fields.Length - numbers[^1] - extraWhiteField),
                     End = (fields.Length - 1)
                 };
             }
