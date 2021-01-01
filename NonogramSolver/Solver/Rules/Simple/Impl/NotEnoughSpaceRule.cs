@@ -7,19 +7,7 @@ namespace Solver.Engine.Rules.Simple.Impl
     {
         public FieldType[] Apply(int number, FieldType[] fields)
         {
-            List<int> whiteFieldPositions = new List<int>()
-            {
-                -1,
-            };
-
-            for(int i = 0; i < fields.Length; i++)
-            {
-                if(fields[i] == FieldType.White)
-                {
-                    whiteFieldPositions.Add(i);
-                }
-            }
-            whiteFieldPositions.Add(fields.Length);
+            List<int> whiteFieldPositions = GetWhiteFieldPositions(fields);
 
             for (int i = 1; i < whiteFieldPositions.Count; i++)
             {
@@ -33,6 +21,25 @@ namespace Solver.Engine.Rules.Simple.Impl
             }
 
             return fields;
+        }
+
+        private List<int> GetWhiteFieldPositions(FieldType[] fields)
+        {
+            List<int> whiteFieldPositions = new List<int>()
+            {
+                -1,
+            };
+
+            for (int i = 0; i < fields.Length; i++)
+            {
+                if (fields[i] == FieldType.White)
+                {
+                    whiteFieldPositions.Add(i);
+                }
+            }
+            whiteFieldPositions.Add(fields.Length);
+
+            return whiteFieldPositions;
         }
     }
 }
