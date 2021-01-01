@@ -1,6 +1,4 @@
 ﻿
-using System.Collections.Generic;
-
 namespace Solver.Engine.Data
 {
     public class Matrix<T>
@@ -50,30 +48,6 @@ namespace Solver.Engine.Data
             {
                 Fields[i, index] = column[i - delay];
             }
-        }
-
-        public List<T[]> GetMatrixRows()
-        {
-            List<T[]> rows = new List<T[]>();
-
-            for(int i = 0; i < Fields.GetLength(0); i++)
-            {
-                rows.Add(GetMatrixRow(i));
-            }
-
-            return rows;
-        }
-
-        public List<T[]> GetMatrixColumns()
-        {
-            List<T[]> rows = new List<T[]>();
-
-            for (int i = 0; i < Fields.GetLength(1); i++)
-            {
-                rows.Add(GetMatrixColumn(i));
-            }
-
-            return rows;
         }
     }
 }

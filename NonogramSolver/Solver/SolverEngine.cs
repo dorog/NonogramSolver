@@ -78,29 +78,27 @@ namespace Solver.Engine
 
         private static void CreateNumberListRanges(Puzzle puzzle)
         {
-            var rows = puzzle.Matrix.GetMatrixRows();
-            for (int i = 0; i < rows.Count; i++)
+            foreach(var row in puzzle.GetRowLines())
             {
                 numberListRanges.Add(new NumberListRange()
                 {
                     RangeType = RangeType.Row,
-                    Index = i,
+                    Index = row.Index,
                     Delay = 0,
-                    Fields = rows[i],
-                    Numbers = puzzle.Rows[i]
+                    Fields = row.Fields,
+                    Numbers = row.Numbers
                 });
             }
 
-            var columns = puzzle.Matrix.GetMatrixColumns();
-            for (int i = 0; i < columns.Count; i++)
+            foreach(var column in puzzle.GetColumnLines())
             {
                 numberListRanges.Add(new NumberListRange()
                 {
                     RangeType = RangeType.Column,
-                    Index = i,
+                    Index = column.Index,
                     Delay = 0,
-                    Fields = columns[i],
-                    Numbers = puzzle.Columns[i]
+                    Fields = column.Fields,
+                    Numbers = column.Numbers
                 });
             }
         }
@@ -347,19 +345,16 @@ namespace Solver.Engine
 
         private static void ApplyComplexRuleOnThePuzzle(Puzzle puzzle, IComplexRule complexRule)
         {
-
-            for (int i = 0; i < puzzle.Matrix.Fields.GetLength(0); i++)
+            foreach(var row in puzzle.GetRowLines())
             {
-                FieldType[] actualRow = puzzle.Matrix.GetMatrixRow(i);
-                FieldType[] calculatedRow = complexRule.Check(puzzle.Rows[i], actualRow);
-                puzzle.Matrix.SetMatrixRow(i, calculatedRow);
+                var calculatedRow = complexRule.Check(row.Numbers, row.Fields);
+                puzzle.Matrix.SetMatrixRow(row.Index, calculatedRow);
             }
 
-            for (int i = 0; i < puzzle.Matrix.Fields.GetLength(1); i++)
+            foreach (var column in puzzle.GetColumnLines())
             {
-                FieldType[] actualColumn = puzzle.Matrix.GetMatrixColumn(i);
-                FieldType[] calculatedRow = complexRule.Check(puzzle.Columns[i], actualColumn);
-                puzzle.Matrix.SetMatrixColumn(i, calculatedRow);
+                var calculatedRow = complexRule.Check(column.Numbers, column.Fields);
+                puzzle.Matrix.SetMatrixColumn(column.Index, calculatedRow);
             }
         }
     }
