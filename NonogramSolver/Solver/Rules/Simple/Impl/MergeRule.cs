@@ -6,6 +6,18 @@ namespace Solver.Engine.Rules.Simple.Impl
     {
         public FieldType[] Apply(int number, FieldType[] fields)
         {
+            Range range = GetFirstAndLastSolidRange(fields);
+
+            if(range != null && range.End - range.Start < number)
+            {
+                Fill(range, fields);
+            }
+
+            return fields;
+        }
+
+        private Range GetFirstAndLastSolidRange(FieldType[] fields)
+        {
             int? min = null;
             int? max = null;
 
@@ -22,22 +34,20 @@ namespace Solver.Engine.Rules.Simple.Impl
                 }
             }
 
-            if(min != null && max != null && max - min < number)
+            if(min != null && max != null)
             {
-                return Fill(min.GetValueOrDefault(), max.GetValueOrDefault(), fields);
+                return new Range() { Start = min.GetValueOrDefault(), End = max.GetValueOrDefault() };
             }
 
-            return fields;
+            return null;
         }
 
-        private FieldType[] Fill(int min, int max, FieldType[] fields)
+        private void Fill(Range range, FieldType[] fields)
         {
-            for(int i = min; i <= max; i++)
+            for(int i = range.Start; i <= range.End; i++)
             {
                 fields[i] = FieldType.Solid;
             }
-
-            return fields;
         }
     }
 }
