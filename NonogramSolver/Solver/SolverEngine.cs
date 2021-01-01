@@ -33,7 +33,8 @@ namespace Solver.Engine
             new TwoNumberDistanceSeparator(),
             new WallSeparator(),
             new OnlyOneNumberSeparator(),
-            new EndSeparator(),
+            new StartSpaceSeparator(),
+            new EndSpaceSeparator(),
             new HoleNumberSeparator()
         };
 

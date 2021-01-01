@@ -6,9 +6,9 @@ using System.Collections.Generic;
 namespace Solver.Test.SeparatorTests
 {
     [TestClass]
-    public class EndSeparatorTests
+    public class EndSpaceSeparatorTests
     {
-        private readonly EndSeparator endSeparator = new EndSeparator();
+        private readonly EndSpaceSeparator endSpaceSeparator = new EndSpaceSeparator();
 
         private readonly FieldType solid = FieldType.Solid;
         private readonly FieldType unknown = FieldType.Unknown;
@@ -24,7 +24,7 @@ namespace Solver.Test.SeparatorTests
                 null   
             };
 
-            var results = endSeparator.Separate(numbers, fields);
+            var results = endSpaceSeparator.Separate(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -40,7 +40,7 @@ namespace Solver.Test.SeparatorTests
                 null,
             };
 
-            var results = endSeparator.Separate(numbers, fields);
+            var results = endSpaceSeparator.Separate(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -55,7 +55,7 @@ namespace Solver.Test.SeparatorTests
                 null
             };
 
-            var results = endSeparator.Separate(numbers, fields);
+            var results = endSpaceSeparator.Separate(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -67,14 +67,10 @@ namespace Solver.Test.SeparatorTests
             FieldType[] fields = new FieldType[] { unknown, solid, unknown, white, unknown, unknown, unknown };
             Range[] expected = new Range[]
             {
-                new Range()
-                {
-                    Start = 0,
-                    End = 2,
-                }
+                null
             };
 
-            var results = endSeparator.Separate(numbers, fields);
+            var results = endSpaceSeparator.Separate(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -86,14 +82,10 @@ namespace Solver.Test.SeparatorTests
             FieldType[] fields = new FieldType[] { solid, unknown, unknown, unknown, white, unknown, unknown, unknown };
             Range[] expected = new Range[]
             {
-                new Range()
-                {
-                    Start = 0,
-                    End = 3,
-                }
+                null
             };
 
-            var results = endSeparator.Separate(numbers, fields);
+            var results = endSpaceSeparator.Separate(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -108,7 +100,7 @@ namespace Solver.Test.SeparatorTests
                 null
             };
 
-            var results = endSeparator.Separate(numbers, fields);
+            var results = endSpaceSeparator.Separate(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -127,7 +119,7 @@ namespace Solver.Test.SeparatorTests
                 }
             };
 
-            var results = endSeparator.Separate(numbers, fields);
+            var results = endSpaceSeparator.Separate(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -146,7 +138,7 @@ namespace Solver.Test.SeparatorTests
                 }
             };
 
-            var results = endSeparator.Separate(numbers, fields);
+            var results = endSpaceSeparator.Separate(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -161,7 +153,7 @@ namespace Solver.Test.SeparatorTests
                 null
             };
 
-            var results = endSeparator.Separate(numbers, fields);
+            var results = endSpaceSeparator.Separate(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -173,11 +165,11 @@ namespace Solver.Test.SeparatorTests
             FieldType[] fields = new FieldType[] { unknown, solid, white, solid, unknown, unknown };
             Range[] expected = new Range[]
             {
-                new Range(){ Start = 0, End = 1 },
+                null,
                 new Range(){ Start = 3, End = 5 },
             };
 
-            var results = endSeparator.Separate(numbers, fields);
+            var results = endSpaceSeparator.Separate(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
