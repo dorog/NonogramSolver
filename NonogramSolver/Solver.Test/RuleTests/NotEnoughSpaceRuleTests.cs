@@ -20,7 +20,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, white, unknown, unknown, white, unknown };
             FieldType[] expected = new FieldType[] { unknown, white, unknown, unknown, white, unknown };
 
-            var results = notEnoughSpaceRule.Check(number, fields);
+            var results = notEnoughSpaceRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -32,7 +32,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, white, unknown, unknown, white, unknown, unknown };
             FieldType[] expected = new FieldType[] { white, white, unknown, unknown, white, unknown, unknown };
 
-            var results = notEnoughSpaceRule.Check(number, fields);
+            var results = notEnoughSpaceRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -44,7 +44,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, unknown, unknown, white, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, unknown, unknown, white, white, white };
 
-            var results = notEnoughSpaceRule.Check(number, fields);
+            var results = notEnoughSpaceRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -56,7 +56,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, white, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, unknown, white, white, white, unknown, unknown };
 
-            var results = notEnoughSpaceRule.Check(number, fields);
+            var results = notEnoughSpaceRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -68,7 +68,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, white, solid, solid, solid, solid, solid, white, unknown, unknown };
             FieldType[] expected = new FieldType[] { white, white, white, white, white, white, solid, solid, solid, solid, solid, white, white, white };
 
-            var results = notEnoughSpaceRule.Check(number, fields);
+            var results = notEnoughSpaceRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }

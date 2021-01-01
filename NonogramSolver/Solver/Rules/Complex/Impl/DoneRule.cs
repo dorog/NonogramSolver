@@ -5,7 +5,7 @@ namespace Solver.Engine.Rules.Complex.Impl
 {
     public class DoneRule : IComplexRule
     {
-        public FieldType[] Check(List<int> numbers, FieldType[] fields)
+        public FieldType[] Apply(List<int> numbers, FieldType[] fields)
         {
             List<int> lengths = new List<int>();
 

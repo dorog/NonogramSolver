@@ -5,6 +5,6 @@ namespace Solver.Engine.Rules
 {
     public interface IComplexRule
     {
-        FieldType[] Check(List<int> numbers, FieldType[] fields);
+        FieldType[] Apply(List<int> numbers, FieldType[] fields);
     }
 }

@@ -20,7 +20,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, solid, unknown, solid, unknown };
             FieldType[] expected = new FieldType[] { unknown, solid, unknown, solid, unknown };
 
-            var results = wallRule.Check(number, fields);
+            var results = wallRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -32,7 +32,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { solid, unknown, solid, unknown, unknown };
             FieldType[] expected = new FieldType[] { solid, solid, solid, solid, unknown };
 
-            var results = wallRule.Check(number, fields);
+            var results = wallRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -44,7 +44,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, solid, unknown, solid, solid };
             FieldType[] expected = new FieldType[] { unknown, solid, solid, solid, solid };
 
-            var results = wallRule.Check(number, fields);
+            var results = wallRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -56,7 +56,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, white, unknown, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, white, unknown, unknown, unknown };
 
-            var results = wallRule.Check(number, fields);
+            var results = wallRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -68,7 +68,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, white, unknown, solid, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, white, unknown, solid, unknown };
 
-            var results = wallRule.Check(number, fields);
+            var results = wallRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -80,7 +80,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, white, solid, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, white, solid, solid, solid };
 
-            var results = wallRule.Check(number, fields);
+            var results = wallRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -92,7 +92,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, white, solid, unknown, solid, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, white, solid, solid, solid, unknown };
 
-            var results = wallRule.Check(number, fields);
+            var results = wallRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -104,7 +104,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { solid, unknown, solid, white, unknown, unknown, unknown };
             FieldType[] expected = new FieldType[] { solid, solid, solid, white, unknown, unknown, unknown };
 
-            var results = wallRule.Check(number, fields);
+            var results = wallRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -116,7 +116,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, solid, unknown, solid, white, unknown, unknown, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, solid, solid, solid, white, unknown, unknown, unknown, unknown };
 
-            var results = wallRule.Check(number, fields);
+            var results = wallRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }

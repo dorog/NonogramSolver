@@ -5,7 +5,7 @@ namespace Solver.Engine.Rules.Simple.Impl
 {
     public class UnreachableRule : ISimpleRule
     {
-        public FieldType[] Check(int number, FieldType[] fields)
+        public FieldType[] Apply(int number, FieldType[] fields)
         {
             int? max = null;
             int? min = null;

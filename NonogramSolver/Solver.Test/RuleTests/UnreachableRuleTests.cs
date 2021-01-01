@@ -20,7 +20,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, solid, solid, solid, unknown };
             FieldType[] expected = new FieldType[] { unknown, solid, solid, solid, unknown };
 
-            var results = unreachableRule.Check(number, fields);
+            var results = unreachableRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -32,7 +32,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { solid, solid, solid, solid, solid };
             FieldType[] expected = new FieldType[] { solid, solid, solid, solid, solid };
 
-            var results = unreachableRule.Check(number, fields);
+            var results = unreachableRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -44,7 +44,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, solid };
             FieldType[] expected = new FieldType[] { unknown, unknown, solid, solid, solid };
 
-            var results = unreachableRule.Check(number, fields);
+            var results = unreachableRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -56,7 +56,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { solid, solid, solid, unknown, unknown };
             FieldType[] expected = new FieldType[] { solid, solid, solid, unknown ,unknown  };
 
-            var results = unreachableRule.Check(number, fields);
+            var results = unreachableRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -68,7 +68,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, solid, solid, unknown, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, solid, solid, unknown, white, white };
 
-            var results = unreachableRule.Check(number, fields);
+            var results = unreachableRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -80,7 +80,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, unknown, solid, solid, unknown };
             FieldType[] expected = new FieldType[] { white, white, unknown, solid, solid, unknown };
 
-            var results = unreachableRule.Check(number, fields);
+            var results = unreachableRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -92,7 +92,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, unknown, unknown };
             FieldType[] expected = new FieldType[] { white, unknown, solid, solid, unknown, white };
 
-            var results = unreachableRule.Check(number, fields);
+            var results = unreachableRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }

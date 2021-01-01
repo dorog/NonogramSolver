@@ -19,7 +19,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[5];
             FieldType[] expected = new FieldType[] { solid, solid, solid, solid, solid };
 
-            var results = halfOrMore.Check(number, fields);
+            var results = halfOrMore.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -31,7 +31,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[5];
             FieldType[] expected = new FieldType[] { unknown, unknown, solid, unknown, unknown };
 
-            var results = halfOrMore.Check(number, fields);
+            var results = halfOrMore.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -43,7 +43,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[6];
             FieldType[] expected = new FieldType[] { unknown, unknown, unknown, unknown, unknown, unknown };
 
-            var results = halfOrMore.Check(number, fields);
+            var results = halfOrMore.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -55,7 +55,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[6];
             FieldType[] expected = new FieldType[] { unknown, unknown, unknown, unknown, unknown, unknown };
 
-            var results = halfOrMore.Check(number, fields);
+            var results = halfOrMore.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -67,7 +67,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[5] { unknown, unknown, unknown, unknown, solid };
             FieldType[] expected = new FieldType[] { unknown, unknown, solid, unknown, solid };
 
-            var results = halfOrMore.Check(number, fields);
+            var results = halfOrMore.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }

@@ -4,7 +4,7 @@ namespace Solver.Engine.Rules.Simple.Impl
 {
     public class MergeRule : ISimpleRule
     {
-        public FieldType[] Check(int number, FieldType[] fields)
+        public FieldType[] Apply(int number, FieldType[] fields)
         {
             int? min = null;
             int? max = null;

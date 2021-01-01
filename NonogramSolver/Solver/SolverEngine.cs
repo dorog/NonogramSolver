@@ -122,7 +122,7 @@ namespace Solver.Engine
 
                 foreach (var simpleRule in simpleRules)
                 {
-                    var result = simpleRule.Check(notDoneRange.Number, notDoneRange.Fields);
+                    var result = simpleRule.Apply(notDoneRange.Number, notDoneRange.Fields);
                     if (IsChanged(originalFields, result))
                     {
                         notDoneRange.Fields = result;
@@ -347,13 +347,13 @@ namespace Solver.Engine
         {
             foreach(var row in puzzle.GetRowLines())
             {
-                var calculatedRow = complexRule.Check(row.Numbers, row.Fields);
+                var calculatedRow = complexRule.Apply(row.Numbers, row.Fields);
                 puzzle.Matrix.SetMatrixRow(row.Index, calculatedRow);
             }
 
             foreach (var column in puzzle.GetColumnLines())
             {
-                var calculatedRow = complexRule.Check(column.Numbers, column.Fields);
+                var calculatedRow = complexRule.Apply(column.Numbers, column.Fields);
                 puzzle.Matrix.SetMatrixColumn(column.Index, calculatedRow);
             }
         }

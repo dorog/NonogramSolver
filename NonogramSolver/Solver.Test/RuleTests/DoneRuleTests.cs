@@ -21,7 +21,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { solid, solid, solid, solid, solid };
             FieldType[] expected = new FieldType[] { solid, solid, solid, solid, solid };
 
-            var results = doneRule.Check(numbers, fields);
+            var results = doneRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -33,7 +33,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { white, solid, solid, solid, solid, solid };
             FieldType[] expected = new FieldType[] { white, solid, solid, solid, solid, solid };
 
-            var results = doneRule.Check(numbers, fields);
+            var results = doneRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -45,7 +45,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { solid, solid, solid, solid, solid, unknown };
             FieldType[] expected = new FieldType[] { solid, solid, solid, solid, solid, white };
 
-            var results = doneRule.Check(numbers, fields);
+            var results = doneRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -57,7 +57,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, solid, solid, solid, solid, solid, unknown };
             FieldType[] expected = new FieldType[] { white, solid, solid, solid, solid, solid, white };
 
-            var results = doneRule.Check(numbers, fields);
+            var results = doneRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -69,7 +69,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { solid, solid, unknown, solid, solid };
             FieldType[] expected = new FieldType[] { solid, solid, white, solid, solid };
 
-            var results = doneRule.Check(numbers, fields);
+            var results = doneRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -81,7 +81,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, solid, unknown };
             FieldType[] expected = new FieldType[] { white, white, solid, solid, white, solid, solid, white };
 
-            var results = doneRule.Check(numbers, fields);
+            var results = doneRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -93,7 +93,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, solid, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, solid, unknown };
 
-            var results = doneRule.Check(numbers, fields);
+            var results = doneRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -105,7 +105,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, solid, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, solid, unknown };
 
-            var results = doneRule.Check(numbers, fields);
+            var results = doneRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -117,7 +117,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, unknown, solid, solid, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, solid, solid, unknown, solid, unknown, solid, solid, unknown };
 
-            var results = doneRule.Check(numbers, fields);
+            var results = doneRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }

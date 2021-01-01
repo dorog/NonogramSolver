@@ -4,7 +4,7 @@ namespace Solver.Engine.Rules.Simple.Impl
 {
     public class WallRule : ISimpleRule
     {
-        public FieldType[] Check(int number, FieldType[] fields)
+        public FieldType[] Apply(int number, FieldType[] fields)
         {
             if(fields[0] == FieldType.Solid)
             {

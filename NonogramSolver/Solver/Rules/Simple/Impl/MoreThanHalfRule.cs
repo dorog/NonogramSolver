@@ -4,7 +4,7 @@ namespace Solver.Engine.Rules.Simple.Impl
 {
     public class MoreThanHalfRule : ISimpleRule
     {
-        public FieldType[] Check(int number, FieldType[] fields)
+        public FieldType[] Apply(int number, FieldType[] fields)
         {
             if (number > fields.Length / 2)
             {

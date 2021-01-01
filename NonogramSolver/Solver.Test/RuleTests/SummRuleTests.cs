@@ -20,7 +20,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[5];
             FieldType[] expected = new FieldType[] { solid, solid, solid, solid, solid };
 
-            var results = summRule.Check(numbers, fields);
+            var results = summRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -32,7 +32,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[5];
             FieldType[] expected = new FieldType[] { solid, solid, white, solid, solid };
 
-            var results = summRule.Check(numbers, fields);
+            var results = summRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -44,7 +44,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[5];
             FieldType[] expected = new FieldType[] { solid, white, solid, white, solid };
 
-            var results = summRule.Check(numbers, fields);
+            var results = summRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -56,7 +56,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[5];
             FieldType[] expected = new FieldType[5];
 
-            var results = summRule.Check(numbers, fields);
+            var results = summRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -68,7 +68,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[5];
             FieldType[] expected = new FieldType[5];
 
-            var results = summRule.Check(numbers, fields);
+            var results = summRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -80,7 +80,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[7];
             FieldType[] expected = new FieldType[7];
 
-            var results = summRule.Check(numbers, fields);
+            var results = summRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }

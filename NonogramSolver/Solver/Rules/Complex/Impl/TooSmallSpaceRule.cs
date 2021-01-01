@@ -9,11 +9,11 @@ namespace Solver.Engine.Rules.Complex.Impl
     {
         private readonly NotEnoughSpaceRule notEnoughSpaceRule = new NotEnoughSpaceRule();
 
-        public FieldType[] Check(List<int> numbers, FieldType[] fields)
+        public FieldType[] Apply(List<int> numbers, FieldType[] fields)
         {
             int smallest = numbers.OrderBy(x => x).First();
 
-            return notEnoughSpaceRule.Check(smallest, fields);
+            return notEnoughSpaceRule.Apply(smallest, fields);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Solver.Engine.Rules.Complex.Impl
 {
     public class SummRule : IComplexRule
     {
-        public FieldType[] Check(List<int> numbers, FieldType[] fields)
+        public FieldType[] Apply(List<int> numbers, FieldType[] fields)
         {
             long summ = numbers.Count - 1;
             foreach(var number in numbers)

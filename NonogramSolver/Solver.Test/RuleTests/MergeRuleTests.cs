@@ -19,7 +19,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[5];
             FieldType[] expected = new FieldType[5];
 
-            var results = mergeRule.Check(number, fields);
+            var results = mergeRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -31,7 +31,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { solid, unknown, unknown, unknown, solid };
             FieldType[] expected = new FieldType[] { solid, solid, solid, solid, solid };
 
-            var results = mergeRule.Check(number, fields);
+            var results = mergeRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -43,7 +43,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, solid, unknown, solid, unknown };
             FieldType[] expected = new FieldType[] { unknown, solid, solid, solid, unknown };
 
-            var results = mergeRule.Check(number, fields);
+            var results = mergeRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -55,7 +55,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, solid, unknown, solid };
             FieldType[] expected = new FieldType[] { unknown, unknown, solid, solid, solid };
 
-            var results = mergeRule.Check(number, fields);
+            var results = mergeRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -67,7 +67,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { solid, unknown, solid, unknown, unknown };
             FieldType[] expected = new FieldType[] { solid, solid, solid, unknown, unknown };
 
-            var results = mergeRule.Check(number, fields);
+            var results = mergeRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -79,7 +79,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, solid, unknown, solid, unknown };
             FieldType[] expected = new FieldType[] { unknown, solid, solid, solid, unknown };
 
-            var results = mergeRule.Check(number, fields);
+            var results = mergeRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -91,7 +91,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, solid, unknown, solid };
             FieldType[] expected = new FieldType[] { unknown, unknown, solid, solid, solid };
 
-            var results = mergeRule.Check(number, fields);
+            var results = mergeRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -103,7 +103,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { solid, unknown, solid, unknown, unknown };
             FieldType[] expected = new FieldType[] { solid, solid, solid, unknown, unknown };
 
-            var results = mergeRule.Check(number, fields);
+            var results = mergeRule.Apply(number, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }

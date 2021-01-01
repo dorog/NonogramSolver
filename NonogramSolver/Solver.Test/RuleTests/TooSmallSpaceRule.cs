@@ -20,7 +20,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, white, unknown, unknown, unknown, white, unknown, unknown, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, white, unknown, unknown, unknown, white, unknown, unknown, unknown, unknown };
 
-            var results = tooSmallSpaceRule.Check(numbers, fields);
+            var results = tooSmallSpaceRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -32,7 +32,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, white, unknown, unknown, unknown, white, unknown, unknown, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, white, unknown, unknown, unknown, white, unknown, unknown, unknown, unknown };
 
-            var results = tooSmallSpaceRule.Check(numbers, fields);
+            var results = tooSmallSpaceRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -44,7 +44,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, white, unknown, unknown, unknown, white, unknown, unknown, unknown, unknown };
             FieldType[] expected = new FieldType[] { white, white, white, unknown, unknown, unknown, white, unknown, unknown, unknown, unknown };
 
-            var results = tooSmallSpaceRule.Check(numbers, fields);
+            var results = tooSmallSpaceRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -56,7 +56,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown,  unknown, white, unknown, unknown, white, unknown, unknown, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, unknown, white, white, white, white, unknown, unknown, unknown, unknown };
 
-            var results = tooSmallSpaceRule.Check(numbers, fields);
+            var results = tooSmallSpaceRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -68,7 +68,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, unknown, white, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, unknown, white, white, white };
 
-            var results = tooSmallSpaceRule.Check(numbers, fields);
+            var results = tooSmallSpaceRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -80,7 +80,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, white, unknown, unknown, unknown, white, unknown, unknown, unknown, unknown };
             FieldType[] expected = new FieldType[] { white, white, white, unknown, unknown, unknown, white, unknown, unknown, unknown, unknown };
 
-            var results = tooSmallSpaceRule.Check(numbers, fields);
+            var results = tooSmallSpaceRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -92,7 +92,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, white, unknown, unknown, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, unknown, white, white, white, white, unknown, unknown, unknown, unknown };
 
-            var results = tooSmallSpaceRule.Check(numbers, fields);
+            var results = tooSmallSpaceRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
@@ -104,7 +104,7 @@ namespace Solver.Test.RuleTests
             FieldType[] fields = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, unknown, white, unknown, unknown };
             FieldType[] expected = new FieldType[] { unknown, unknown, unknown, white, unknown, unknown, unknown, white, white, white };
 
-            var results = tooSmallSpaceRule.Check(numbers, fields);
+            var results = tooSmallSpaceRule.Apply(numbers, fields);
 
             CollectionAssert.AreEqual(expected, results);
         }
