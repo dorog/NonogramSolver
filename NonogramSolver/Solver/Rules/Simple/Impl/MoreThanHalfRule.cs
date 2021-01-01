@@ -8,12 +8,9 @@ namespace Solver.Engine.Rules.Simple.Impl
         {
             if (number > fields.Length / 2)
             {
-                for (int i = 0; i < fields.Length; i++)
+                for (int i = fields.Length - number; i < number; i++)
                 {
-                    if (i < number && fields.Length - number <= i)
-                    {
-                        fields[i] = FieldType.Solid;
-                    }
+                    fields[i] = FieldType.Solid;
                 }
             }
 
