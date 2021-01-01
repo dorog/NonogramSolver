@@ -15,7 +15,7 @@ namespace Solver.Engine
     {
         private static readonly List<IComplexRule> complexRules = new List<IComplexRule>()
         {
-            new DoneRule(),
+            new CompletedLineRule(),
             new TooSmallSpaceRule()
         };
 

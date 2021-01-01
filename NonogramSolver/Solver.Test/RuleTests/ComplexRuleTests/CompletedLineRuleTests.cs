@@ -6,9 +6,9 @@ using System.Collections.Generic;
 namespace Solver.Test.RuleTests.ComplexRuleTests
 {
     [TestClass]
-    public class DoneRuleTests
+    public class CompletedLineRuleTests
     {
-        private readonly DoneRule doneRule = new DoneRule();
+        private readonly CompletedLineRule doneRule = new CompletedLineRule();
 
         private readonly FieldType solid = FieldType.Solid;
         private readonly FieldType unknown = FieldType.Unknown;
