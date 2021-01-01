@@ -3,7 +3,7 @@ using Solver.Engine.Data;
 using Solver.Engine.Rules.Complex.Impl;
 using System.Collections.Generic;
 
-namespace Solver.Test.RuleTests
+namespace Solver.Test.RuleTests.ComplexRuleTests
 {
     [TestClass]
     public class TooSmallSpaceRuleTests

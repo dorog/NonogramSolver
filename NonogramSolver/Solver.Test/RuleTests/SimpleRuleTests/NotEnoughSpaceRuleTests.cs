@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solver.Engine.Data;
 using Solver.Engine.Rules.Simple.Impl;
 
-namespace Solver.Test.RuleTests
+namespace Solver.Test.RuleTests.SimpleRuleTests
 {
     [TestClass]
     public class NotEnoughSpaceRuleTests
