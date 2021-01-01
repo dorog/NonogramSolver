@@ -45,7 +45,7 @@ namespace Solver.Engine
             numberListRanges.Clear();
             notDoneRanges.Clear();
 
-            if (FinishedPuzzle(puzzle))
+            if (puzzle.FinishedPuzzle())
             {
                 return puzzle;
             }
@@ -56,7 +56,7 @@ namespace Solver.Engine
 
             int maxStep = puzzle.Rows.Count * puzzle.Columns.Count;
             int actualStep = 0;
-            while (!FinishedPuzzle(puzzle) && actualStep <= maxStep)
+            while (!puzzle.FinishedPuzzle() && actualStep <= maxStep)
             {
                 ApplyComplexRules(puzzle);
 
@@ -78,26 +78,28 @@ namespace Solver.Engine
 
         private static void CreateNumberListRanges(Puzzle puzzle)
         {
-            for (int i = 0; i < puzzle.Matrix.GetLength(0); i++)
+            var rows = puzzle.Matrix.GetMatrixRows();
+            for (int i = 0; i < rows.Count; i++)
             {
                 numberListRanges.Add(new NumberListRange()
                 {
                     RangeType = RangeType.Row,
                     Index = i,
                     Delay = 0,
-                    Fields = puzzle.GetMatrixRow(i),
+                    Fields = rows[i],
                     Numbers = puzzle.Rows[i]
                 });
             }
 
-            for (int i = 0; i < puzzle.Matrix.GetLength(1); i++)
+            var columns = puzzle.Matrix.GetMatrixColumns();
+            for (int i = 0; i < columns.Count; i++)
             {
                 numberListRanges.Add(new NumberListRange()
                 {
                     RangeType = RangeType.Column,
                     Index = i,
                     Delay = 0,
-                    Fields = puzzle.GetMatrixColumn(i),
+                    Fields = columns[i],
                     Numbers = puzzle.Columns[i]
                 });
             }
@@ -129,11 +131,11 @@ namespace Solver.Engine
 
                         if (notDoneRange.RangeType == RangeType.Column)
                         {
-                            puzzle.SetMatrixColumn(notDoneRange.Index, notDoneRange.Fields, notDoneRange.Delay);
+                            puzzle.Matrix.SetMatrixColumn(notDoneRange.Index, notDoneRange.Fields, notDoneRange.Delay);
                         }
                         else
                         {
-                            puzzle.SetMatrixRow(notDoneRange.Index, notDoneRange.Fields, notDoneRange.Delay);
+                            puzzle.Matrix.SetMatrixRow(notDoneRange.Index, notDoneRange.Fields, notDoneRange.Delay);
                         }
 
                         RefreshNumberedRanges(puzzle);
@@ -171,7 +173,7 @@ namespace Solver.Engine
         {
             foreach(var numberedRange in notDoneRanges)
             {
-                FieldType[] fields = numberedRange.RangeType == RangeType.Column ? puzzle.GetMatrixColumn(numberedRange.Index) : puzzle.GetMatrixRow(numberedRange.Index);
+                FieldType[] fields = numberedRange.RangeType == RangeType.Column ? puzzle.Matrix.GetMatrixColumn(numberedRange.Index) : puzzle.Matrix.GetMatrixRow(numberedRange.Index);
 
                 for(int i = 0; i < numberedRange.Fields.Length; i++)
                 {
@@ -184,7 +186,7 @@ namespace Solver.Engine
         {
             foreach (var numberListRange in numberListRanges)
             {
-                FieldType[] fields = numberListRange.RangeType == RangeType.Column ? puzzle.GetMatrixColumn(numberListRange.Index) : puzzle.GetMatrixRow(numberListRange.Index);
+                FieldType[] fields = numberListRange.RangeType == RangeType.Column ? puzzle.Matrix.GetMatrixColumn(numberListRange.Index) : puzzle.Matrix.GetMatrixRow(numberListRange.Index);
 
                 for (int i = 0; i < numberListRange.Fields.Length; i++)
                 {
@@ -343,36 +345,21 @@ namespace Solver.Engine
             return fields;
         }
 
-        private static bool FinishedPuzzle(Puzzle puzzle)
-        {
-            for(int i = 0; i < puzzle.Matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < puzzle.Matrix.GetLength(1); j++)
-                {
-                    if (puzzle.Matrix[i, j] == 0)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
-
         private static void ApplyComplexRuleOnThePuzzle(Puzzle puzzle, IComplexRule complexRule)
         {
-            for (int i = 0; i < puzzle.Matrix.GetLength(0); i++)
+
+            for (int i = 0; i < puzzle.Matrix.Fields.GetLength(0); i++)
             {
-                FieldType[] actualRow = puzzle.GetMatrixRow(i);
+                FieldType[] actualRow = puzzle.Matrix.GetMatrixRow(i);
                 FieldType[] calculatedRow = complexRule.Check(puzzle.Rows[i], actualRow);
-                puzzle.SetMatrixRow(i, calculatedRow);
+                puzzle.Matrix.SetMatrixRow(i, calculatedRow);
             }
 
-            for (int i = 0; i < puzzle.Matrix.GetLength(1); i++)
+            for (int i = 0; i < puzzle.Matrix.Fields.GetLength(1); i++)
             {
-                FieldType[] actualColumn = puzzle.GetMatrixColumn(i);
+                FieldType[] actualColumn = puzzle.Matrix.GetMatrixColumn(i);
                 FieldType[] calculatedRow = complexRule.Check(puzzle.Columns[i], actualColumn);
-                puzzle.SetMatrixColumn(i, calculatedRow);
+                puzzle.Matrix.SetMatrixColumn(i, calculatedRow);
             }
         }
     }

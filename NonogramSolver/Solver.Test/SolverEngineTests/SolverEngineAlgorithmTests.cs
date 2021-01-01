@@ -15,29 +15,29 @@ namespace Solver.Test.SolverEngineTests
         [TestMethod]
         public void BirdNonogramTest()
         {
-            Puzzle puzzle = new Puzzle()
+            var Rows = new List<List<int>>()
             {
-                Rows = new List<List<int>>()
-                {
                     new List<int>() { 2, 1 },
                     new List<int>() { 1, 3 },
                     new List<int>() { 1, 2 },
                     new List<int>() { 3 },
                     new List<int>() { 4 },
                     new List<int>() { 1 }
-                },
-                Columns = new List<List<int>>()
-                {
+            };
+
+            var Columns = new List<List<int>>()
+            {
                     new List<int>() { 1 },
                     new List<int>() { 5 },
                     new List<int>() { 2 },
                     new List<int>() { 5 },
                     new List<int>() { 2, 1 },
                     new List<int>() { 2 }
-                },
-                Matrix = new FieldType[6, 6]
             };
-            FieldType[,] matrixSolution = { 
+
+            Puzzle puzzle = new Puzzle(Rows, Columns);
+
+            FieldType[,] matrixSolution = {
                 { solid, solid, white, white, white, solid},
                 { white, solid, white, solid, solid, solid },
                 { white, solid, white, solid, solid, white },
@@ -48,7 +48,7 @@ namespace Solver.Test.SolverEngineTests
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
 
-            var solvedPuzzleMatrix = solvedPuzzle.Matrix;
+            var solvedPuzzleMatrix = solvedPuzzle.Matrix.Fields;
 
             TestResult(matrixSolution, solvedPuzzleMatrix);
         }
@@ -56,26 +56,26 @@ namespace Solver.Test.SolverEngineTests
         [TestMethod]
         public void RoseNonogramTest()
         {
-            Puzzle puzzle = new Puzzle()
+            var Rows = new List<List<int>>()
             {
-                Rows = new List<List<int>>()
-                {
                     new List<int>() { 5 },
                     new List<int>() { 5 },
                     new List<int>() { 5 },
                     new List<int>() { 3 },
                     new List<int>() { 1 },
-                },
-                Columns = new List<List<int>>()
-                {
+            };
+
+            var Columns = new List<List<int>>()
+            {
                     new List<int>() { 3 },
                     new List<int>() { 4 },
                     new List<int>() { 5 },
                     new List<int>() { 4 },
                     new List<int>() { 3 },
-                },
-                Matrix = new FieldType[5, 5]
             };
+
+            Puzzle puzzle = new Puzzle(Rows, Columns);
+
             FieldType[,] matrixSolution = {
                 { solid, solid, solid, solid, solid },
                 { solid, solid, solid, solid, solid },
@@ -86,7 +86,7 @@ namespace Solver.Test.SolverEngineTests
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
 
-            var solvedPuzzleMatrix = solvedPuzzle.Matrix;
+            var solvedPuzzleMatrix = solvedPuzzle.Matrix.Fields;
 
             TestResult(matrixSolution, solvedPuzzleMatrix);
         }
@@ -94,10 +94,8 @@ namespace Solver.Test.SolverEngineTests
         [TestMethod]
         public void BonsaiNonogramTest()
         {
-            Puzzle puzzle = new Puzzle()
+            var Rows = new List<List<int>>()
             {
-                Rows = new List<List<int>>()
-                {
                     new List<int>() { 6 },
                     new List<int>() { 8 },
                     new List<int>() { 10 },
@@ -108,9 +106,10 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 1 },
                     new List<int>() { 6 },
                     new List<int>() { 4 },
-                },
-                Columns = new List<List<int>>()
-                {
+            };
+
+            var Columns = new List<List<int>>()
+            {
                     new List<int>() { 2 },
                     new List<int>() { 4 },
                     new List<int>() { 6, 1 },
@@ -121,9 +120,10 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 5, 1 },
                     new List<int>() { 4 },
                     new List<int>() { 2 },
-                },
-                Matrix = new FieldType[10, 10]
             };
+
+            Puzzle puzzle = new Puzzle(Rows, Columns);
+
             FieldType[,] matrixSolution = {
                 { white, white, solid, solid, solid, solid, solid, solid, white, white },
                 { white, solid, solid, solid, solid, solid, solid, solid, solid, white },
@@ -139,7 +139,7 @@ namespace Solver.Test.SolverEngineTests
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
 
-            var solvedPuzzleMatrix = solvedPuzzle.Matrix;
+            var solvedPuzzleMatrix = solvedPuzzle.Matrix.Fields;
 
             TestResult(matrixSolution, solvedPuzzleMatrix);
         }
@@ -147,10 +147,8 @@ namespace Solver.Test.SolverEngineTests
         [TestMethod]
         public void LionNonogramTest()
         {
-            Puzzle puzzle = new Puzzle()
+            var Rows = new List<List<int>>()
             {
-                Rows = new List<List<int>>()
-                {
                     new List<int>() { 7 },
                     new List<int>() { 9 },
                     new List<int>() { 2, 4, 2 },
@@ -166,8 +164,9 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 14 },
                     new List<int>() { 2, 3, 2 },
                     new List<int>() { 1, 1, 1, 1, 1, 1, 1 },
-                },
-                Columns = new List<List<int>>()
+            };
+
+            var Columns = new List<List<int>>()
                 {
                     new List<int>() { 4 },
                     new List<int>() { 6, 4 },
@@ -184,9 +183,10 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 4 },
                     new List<int>() { 3 },
                     new List<int>() { 5 },
-                },
-                Matrix = new FieldType[15, 15]
             };
+
+            Puzzle puzzle = new Puzzle(Rows, Columns);
+
             FieldType[,] matrixSolution = {
                 { white, white, white, solid, solid, solid, solid, solid, solid, solid, white, white, white, white, white },
                 { white, white, solid, solid, solid, solid, solid, solid, solid, solid, solid, white, white, white, white },
@@ -207,7 +207,7 @@ namespace Solver.Test.SolverEngineTests
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
 
-            var solvedPuzzleMatrix = solvedPuzzle.Matrix;
+            var solvedPuzzleMatrix = solvedPuzzle.Matrix.Fields;
 
             TestResult(matrixSolution, solvedPuzzleMatrix);
         }
@@ -215,10 +215,8 @@ namespace Solver.Test.SolverEngineTests
         [TestMethod]
         public void FlamingoNonogramTest()
         {
-            Puzzle puzzle = new Puzzle()
+            var Rows = new List<List<int>>()
             {
-                Rows = new List<List<int>>()
-                {
                     new List<int>() { 4 },
                     new List<int>() { 6 },
                     new List<int>() { 3, 3 },
@@ -234,9 +232,10 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 13 },
                     new List<int>() { 13 },
                     new List<int>() { 11 }
-                },
-                Columns = new List<List<int>>()
-                {
+            };
+
+            var Columns = new List<List<int>>()
+            {
                     new List<int>() { 4 },
                     new List<int>() { 4 },
                     new List<int>() { 5, 6 },
@@ -252,9 +251,10 @@ namespace Solver.Test.SolverEngineTests
                     new List<int>() { 8 },
                     new List<int>() { 7 },
                     new List<int>() { 5 }
-                },
-                Matrix = new FieldType[15, 15]
             };
+
+            Puzzle puzzle = new Puzzle(Rows, Columns);
+
             FieldType[,] matrixSolution = {
                 { white, white, solid, solid, solid, solid, white, white, white, white, white, white, white, white, white },
                 { white, solid, solid, solid, solid, solid, solid, white, white, white, white, white, white, white, white },
@@ -275,7 +275,7 @@ namespace Solver.Test.SolverEngineTests
 
             var solvedPuzzle = SolverEngine.Solve(puzzle);
 
-            var solvedPuzzleMatrix = solvedPuzzle.Matrix;
+            var solvedPuzzleMatrix = solvedPuzzle.Matrix.Fields;
 
             TestResult(matrixSolution, solvedPuzzleMatrix);
         }
