@@ -1,5 +1,4 @@
 ﻿using Solver.Engine.Data;
-using System;
 
 namespace Solver.Engine.Rules.Simple.Impl
 {
@@ -7,10 +6,22 @@ namespace Solver.Engine.Rules.Simple.Impl
     {
         public FieldType[] Apply(int number, FieldType[] fields)
         {
+            Range range = GetFirstAndLastSolidRange(fields);
+
+            if (range != null)
+            {
+                Fill(range, number, fields);
+            }
+
+            return fields;
+        }
+
+        private Range GetFirstAndLastSolidRange(FieldType[] fields)
+        {
             int? max = null;
             int? min = null;
 
-            for(int i = 0; i < fields.Length; i++)
+            for (int i = 0; i < fields.Length; i++)
             {
                 if (fields[i] == FieldType.Solid)
                 {
@@ -25,29 +36,30 @@ namespace Solver.Engine.Rules.Simple.Impl
 
             if(max != null && min != null)
             {
-                return Fill(min.GetValueOrDefault(), max.GetValueOrDefault(), number, fields);
+                return new Range() { Start = min.GetValueOrDefault(), End = max.GetValueOrDefault() };
             }
 
-            return fields;
+            return null;
         }
 
-        private FieldType[] Fill(int min, int max, int number, FieldType[] fields)
+        private void Fill(Range range, int number, FieldType[] fields)
         {
-            long maxDistance = number - (max - min);
-            if(maxDistance <= 0)
+            long maxDistance = number - (range.End - range.Start);
+            if(maxDistance > 0)
             {
-                return fields;
-            }
-
-            for(int i = 0; i < fields.Length; i++)
-            {
-                if(Math.Abs(i - min) >= maxDistance && Math.Abs(i - max) >= maxDistance && (i < min || max < i))
+                for (int i = 0; i < fields.Length; i++)
                 {
-                    fields[i] = FieldType.White;
+                    if (System.Math.Abs(i - range.Start) >= maxDistance && System.Math.Abs(i - range.End) >= maxDistance && !IsBetweenStartAndEnd(i, range))
+                    {
+                        fields[i] = FieldType.White;
+                    }
                 }
             }
+        }
 
-            return fields;
+        private bool IsBetweenStartAndEnd(int position, Range range)
+        {
+            return (range.Start <= position &&  position <= range.End);
         }
     }
 }
